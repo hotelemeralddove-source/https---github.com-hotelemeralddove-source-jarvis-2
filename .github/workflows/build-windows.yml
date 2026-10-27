@@ -44,9 +44,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # 3.12, not 3.13: the machines this exe is meant for run 3.12 (the laptop's
+      # venv, the version every fix was verified on), and the Qt pin ships cp312
+      # wheels. A newer interpreter is a variable the target PCs never had.
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.13"
+          python-version: "3.12"
 
       # ---------------------------------------------------------------- 1. deps
       - name: 1. the app's libraries (strict - a missing one fails here, not later)
