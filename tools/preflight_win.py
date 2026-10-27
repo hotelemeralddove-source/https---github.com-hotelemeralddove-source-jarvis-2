@@ -268,7 +268,7 @@ def check_inno() -> tuple[str, str, str]:
 def check_assets() -> tuple[str, str, str]:
     """The icon is required, not decoration.
 
-    Without `shots/arc_icon.ico` PyInstaller does not complain — it silently uses its
+    Without `assets/arc_icon.ico` PyInstaller does not complain — it silently uses its
     own icon, so the installed app's desktop shortcut shows a yellow-and-blue Python-ish
     box and the user reasonably concludes they installed a Python script that does not
     run. A missing icon is a build failure for that reason alone.
@@ -276,9 +276,9 @@ def check_assets() -> tuple[str, str, str]:
     needed = {"run.py": ROOT / "run.py", "arc_daemon.py": ROOT / "arc_daemon.py",
               "Inno script": ROOT / "packaging" / "arcdesk.iss"}
     missing = [name for name, path in needed.items() if not path.is_file()]
-    icon = ROOT / "shots" / "arc_icon.ico"
+    icon = ROOT / "assets" / "arc_icon.ico"
     if not icon.is_file():
-        return (FAIL, "shots/arc_icon.ico is missing",
+        return (FAIL, "assets/arc_icon.ico is missing",
                 "Run  python tools\\make_icon.py  to regenerate it. Without it the "
                 "build silently uses PyInstaller's own icon and the desktop shortcut "
                 "looks like a Python script")

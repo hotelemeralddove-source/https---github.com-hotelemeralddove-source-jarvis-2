@@ -33,14 +33,14 @@ exit /b 1
 :have_exe
 set "TARGET=%EXE%"
 set "ARGS=--show"
-if exist "%~dp0shots\arc_icon.ico" set "ICON=%~dp0shots\arc_icon.ico"
+if exist "%~dp0assets\arc_icon.ico" set "ICON=%~dp0assets\arc_icon.ico"
 echo [Arc Desk] packaged app found - the shortcut will point at it.
 goto :make
 
 :have_starter
 set "TARGET=%~dp0ArcDeskStart.bat"
 set "ARGS="
-if exist "%~dp0shots\arc_icon.ico" set "ICON=%~dp0shots\arc_icon.ico"
+if exist "%~dp0assets\arc_icon.ico" set "ICON=%~dp0assets\arc_icon.ico"
 echo [Arc Desk] no packaged ArcDesk.exe here, so the shortcut will point at
 echo            ArcDeskStart.bat - it keeps a console open, so any error is visible.
 

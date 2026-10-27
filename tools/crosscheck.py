@@ -165,7 +165,7 @@ def main(argv: list[str]) -> int:
                  "tools/voice_setup.py", "tools/clean_voice.py", "tools/move.py",
                  "install_clone.bat", "MOVE.md",
                  "VOICE.md",
-                 "packaging/fetch_runtime.py", "shots/arc_icon.ico", "TOOLS.md",
+                 "packaging/fetch_runtime.py", "assets/arc_icon.ico", "TOOLS.md",
                  "uninstall.bat", "check.bat", "install.bat", "install_voice.bat"):
         # long-form docs live in docs/ since fix48; either place counts as "exists"
         here = (ROOT / name).is_file() or (ROOT / "docs" / Path(name).name).is_file()

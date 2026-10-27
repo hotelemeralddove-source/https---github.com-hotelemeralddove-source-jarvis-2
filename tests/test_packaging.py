@@ -76,11 +76,11 @@ check("spec relies on the package, so all of them are covered",
       "collect_submodules('arcdesk')" in spec or 'collect_submodules("arcdesk")' in spec)
 
 print("3. the icon")
-ico = ROOT / "shots" / "arc_icon.ico"
-check("shots/arc_icon.ico exists", ico.is_file())
+ico = ROOT / "assets" / "arc_icon.ico"
+check("assets/arc_icon.ico exists", ico.is_file())
 check("it is a real ICO (PC header + directory)", ico.read_bytes()[:4] == b"\x00\x00\x01\x00")
-png = ROOT / "shots" / "arc_icon.png"
-check("shots/arc_icon.png exists", png.is_file())
+png = ROOT / "assets" / "arc_icon.png"
+check("assets/arc_icon.png exists", png.is_file())
 if png.is_file():
     try:
         from PIL import Image

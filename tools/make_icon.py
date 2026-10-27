@@ -3,7 +3,7 @@
 
     python tools/make_icon.py
 
-Writes `shots/arc_icon.png` (512) and `shots/arc_icon.ico` (multi-size, for
+Writes `assets/arc_icon.png` (512) and `assets/arc_icon.ico` (multi-size, for
 PyInstaller and Inno Setup). Pure Pillow; deterministic; cheap enough to run in CI.
 
 Shape: concentric rings around a bright core — an arc-reactor *language* of light,
@@ -18,8 +18,8 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageFilter
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT_PNG = ROOT / "shots" / "arc_icon.png"
-OUT_ICO = ROOT / "shots" / "arc_icon.ico"
+OUT_PNG = ROOT / "assets" / "arc_icon.png"
+OUT_ICO = ROOT / "assets" / "arc_icon.ico"
 SIZES = (16, 24, 32, 48, 64, 128, 256)
 
 CYAN = (72, 242, 255)

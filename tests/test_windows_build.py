@@ -289,7 +289,7 @@ check("the icon is checked (its absence is what the user saw on the desktop)",
 print("\n  the .ico itself: Explorer only draws small frames it can read")
 import struct as _struct  # noqa: E402
 
-_ico = (ROOT / "shots" / "arc_icon.ico").read_bytes()
+_ico = (ROOT / "assets" / "arc_icon.ico").read_bytes()
 _frame_count = _struct.unpack("<H", _ico[4:6])[0]
 _layout = []
 for _i in range(_frame_count):
