@@ -1,0 +1,249 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>ARC · what it can do now</title>
+<style>
+ body { background:#05070d; color:#cfe9f2; font:15px/1.55 "Segoe UI",system-ui,sans-serif;
+        margin:0; padding:32px; }
+ h1 { color:#48f2ff; font:600 30px Consolas,monospace; letter-spacing:3px; margin:0 0 6px; }
+ .sub { color:#5d7f8c; margin-bottom:26px; }
+ .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(330px,1fr)); gap:18px; }
+ section { background:#080d14; border:1px solid #12313b; border-radius:10px; padding:16px 18px; }
+ h2 { color:#8ff3ff; font:600 15px Consolas,monospace; letter-spacing:1.5px; margin:0 0 8px;
+       text-transform:uppercase; }
+ .ask { color:#7f8f99; font-size:13px; margin-bottom:10px; }
+ .ask code { color:#f4d06f; }
+ pre { margin:0; white-space:pre-wrap; color:#b8dbe6; font:12.5px/1.5 Consolas,monospace; }
+ .art { display:flex; gap:18px; flex-wrap:wrap; align-items:flex-start; }
+ .art figure { margin:0; background:#000; border:1px solid #12313b; border-radius:10px;
+               padding:8px; }
+ .art figcaption { color:#5d7f8c; font-size:12px; padding-top:6px; }
+ svg { display:block; }
+ footer { color:#3f5a66; margin-top:26px; font-size:12px; }
+</style></head><body>
+<h1>ARC // WHAT IT CAN DO NOW</h1>
+<div class="sub">73 tools · everything below ran on this machine just now · no cloud, no key, no guesswork</div>
+
+<div class="art">
+  <figure><div style="width:260px"><svg xmlns="http://www.w3.org/2000/svg" width="260" height="368" viewBox="0 0 800 1131">
+<rect width="260" height="368" fill="#081011"/>
+<circle cx="400.0" cy="475.02" r="120" fill="none" stroke="#19eeff" stroke-width="2.5" opacity="0.35"/>
+<circle cx="400.0" cy="475.02" r="160" fill="none" stroke="#1c6c72" stroke-width="1.5" opacity="0.44999999999999996"/>
+<circle cx="400.0" cy="475.02" r="205" fill="none" stroke="#19eeff" stroke-width="2.5" opacity="0.55"/>
+<circle cx="400.0" cy="475.02" r="250" fill="none" stroke="#1c6c72" stroke-width="1.5" opacity="0.65"/>
+<circle cx="400.0" cy="475.02" r="300" fill="none" stroke="#19eeff" stroke-width="2.5" opacity="0.75"/>
+<line x1="650.0" y1="475.0" x2="676.0" y2="475.0" stroke="#19eeff" stroke-width="2.6" opacity="0.75"/>
+<line x1="647.9" y1="507.7" x2="659.8" y2="509.2" stroke="#19eeff" stroke-width="1.6" opacity="0.75"/>
+<line x1="641.5" y1="539.7" x2="653.1" y2="542.8" stroke="#19eeff" stroke-width="1.6" opacity="0.75"/>
+<line x1="631.0" y1="570.7" x2="642.1" y2="575.3" stroke="#19eeff" stroke-width="1.6" opacity="0.75"/>
+<line x1="616.5" y1="600.0" x2="639.0" y2="613.0" stroke="#19eeff" stroke-width="2.6" opacity="0.75"/>
+<line x1="598.3" y1="627.2" x2="607.9" y2="634.5" stroke="#19eeff" stroke-width="1.6" opacity="0.75"/>
+<line x1="576.8" y1="651.8" x2="585.3" y2="660.3" stroke="#19eeff" stroke-width="1.6" opacity="0.75"/>
+<line x1="552.2" y1="673.4" x2="559.5" y2="682.9" stroke="#19eeff" stroke-width="1.6" opacity="0.75"/>
+<line x1="525.0" y1="691.5" x2="538.0" y2="714.0" stroke="#19eeff" stroke-width="2.6" opacity="0.75"/>
+<line x1="495.7" y1="706.0" x2="500.3" y2="717.1" stroke="#19eeff" stroke-width="1.6" opacity="0.75"/>
+<line x1="464.7" y1="716.5" x2="467.8" y2="728.1" stroke="#19eeff" stroke-width="1.6" opacity="0.75"/>
+<line x1="432.6" y1="722.9" x2="434.2" y2="734.8" stroke="#19eeff" stroke-width="1.6" opacity="0.75"/>
+<line x1="400.0" y1="725.0" x2="400.0" y2="751.0" stroke="#19eeff" stroke-width="2.6" opacity="0.75"/>
+<line x1="367.4" y1="722.9" x2="365.8" y2="734.8" stroke="#19eeff" stroke-width="1.6" opacity="0.75"/>
+<line x1="335.3" y1="716.5" x2="332.2" y2="728.1" stroke="#19eeff" stroke-width="1.6" opacity="0.75"/>
+<line x1="304.3" y1="706.0" x2="299.7" y2="717.1" stroke="#19eeff" stroke-width="1.6" opacity="0.75"/>
+<line x1="275.0" y1="691.5" x2="262.0" y2="714.0" stroke="#19eeff" stroke-width="2.6" opacity="0.75"/>
+<line x1="247.8" y1="673.4" x2="240.5" y2="682.9" stroke="#19eeff" stroke-width="1.6" opacity="0.75"/>
+<line x1="223.2" y1="651.8" x2="214.7" y2="660.3" stroke="#19eeff" stroke-width="1.6" opacity="0.75"/>
+<line x1="201.7" y1="627.2" x2="192.1" y2="634.5" stroke="#19eeff" stroke-width="1.6" opacity="0.75"/>
+<line x1="183.5" y1="600.0" x2="161.0" y2="613.0" stroke="#19eeff" stroke-width="2.6" opacity="0.75"/>
+<line x1="169.0" y1="570.7" x2="157.9" y2="575.3" stroke="#19eeff" stroke-width="1.6" opacity="0.75"/>
+<line x1="158.5" y1="539.7" x2="146.9" y2="542.8" stroke="#19eeff" stroke-width="1.6" opacity="0.75"/>
+<line x1="152.1" y1="507.7" x2="140.2" y2="509.2" stroke="#19eeff" stroke-width="1.6" opacity="0.75"/>
+<line x1="150.0" y1="475.0" x2="124.0" y2="475.0" stroke="#19eeff" stroke-width="2.6" opacity="0.75"/>
+<line x1="152.1" y1="442.4" x2="140.2" y2="440.8" stroke="#19eeff" stroke-width="1.6" opacity="0.75"/>
+<line x1="158.5" y1="410.3" x2="146.9" y2="407.2" stroke="#19eeff" stroke-width="1.6" opacity="0.75"/>
+<line x1="169.0" y1="379.3" x2="157.9" y2="374.8" stroke="#19eeff" stroke-width="1.6" opacity="0.75"/>
+<line x1="183.5" y1="350.0" x2="161.0" y2="337.0" stroke="#19eeff" stroke-width="2.6" opacity="0.75"/>
+<line x1="201.7" y1="322.8" x2="192.1" y2="315.5" stroke="#19eeff" stroke-width="1.6" opacity="0.75"/>
+<line x1="223.2" y1="298.2" x2="214.7" y2="289.8" stroke="#19eeff" stroke-width="1.6" opacity="0.75"/>
+<line x1="247.8" y1="276.7" x2="240.5" y2="267.2" stroke="#19eeff" stroke-width="1.6" opacity="0.75"/>
+<line x1="275.0" y1="258.5" x2="262.0" y2="236.0" stroke="#19eeff" stroke-width="2.6" opacity="0.75"/>
+<line x1="304.3" y1="244.1" x2="299.7" y2="233.0" stroke="#19eeff" stroke-width="1.6" opacity="0.75"/>
+<line x1="335.3" y1="233.5" x2="332.2" y2="221.9" stroke="#19eeff" stroke-width="1.6" opacity="0.75"/>
+<line x1="367.4" y1="227.2" x2="365.8" y2="215.3" stroke="#19eeff" stroke-width="1.6" opacity="0.75"/>
+<line x1="400.0" y1="225.0" x2="400.0" y2="199.0" stroke="#19eeff" stroke-width="2.6" opacity="0.75"/>
+<line x1="432.6" y1="227.2" x2="434.2" y2="215.3" stroke="#19eeff" stroke-width="1.6" opacity="0.75"/>
+<line x1="464.7" y1="233.5" x2="467.8" y2="221.9" stroke="#19eeff" stroke-width="1.6" opacity="0.75"/>
+<line x1="495.7" y1="244.1" x2="500.3" y2="233.0" stroke="#19eeff" stroke-width="1.6" opacity="0.75"/>
+<line x1="525.0" y1="258.5" x2="538.0" y2="236.0" stroke="#19eeff" stroke-width="2.6" opacity="0.75"/>
+<line x1="552.2" y1="276.7" x2="559.5" y2="267.2" stroke="#19eeff" stroke-width="1.6" opacity="0.75"/>
+<line x1="576.8" y1="298.2" x2="585.3" y2="289.8" stroke="#19eeff" stroke-width="1.6" opacity="0.75"/>
+<line x1="598.3" y1="322.8" x2="607.9" y2="315.5" stroke="#19eeff" stroke-width="1.6" opacity="0.75"/>
+<line x1="616.5" y1="350.0" x2="639.0" y2="337.0" stroke="#19eeff" stroke-width="2.6" opacity="0.75"/>
+<line x1="631.0" y1="379.3" x2="642.1" y2="374.8" stroke="#19eeff" stroke-width="1.6" opacity="0.75"/>
+<line x1="641.5" y1="410.3" x2="653.1" y2="407.2" stroke="#19eeff" stroke-width="1.6" opacity="0.75"/>
+<line x1="647.9" y1="442.4" x2="659.8" y2="440.8" stroke="#19eeff" stroke-width="1.6" opacity="0.75"/>
+<path d="M 577.5 577.5 A 205 205 0 0 1 222.5 577.5" fill="none" stroke="#19eeff" stroke-width="3" opacity="0.5"/>
+<path d="M 477.6 688.3 A 227 227 0 0 1 176.4 435.6" fill="none" stroke="#19eeff" stroke-width="3" opacity="0.5"/>
+<path d="M 314.8 709.0 A 249 249 0 0 1 239.9 284.3" fill="none" stroke="#19eeff" stroke-width="3" opacity="0.5"/>
+<text x="400.0" y="491.02" text-anchor="middle" font-family="Consolas, monospace"
+      font-size="46" letter-spacing="10" fill="#19eeff">ARC</text>
+<text x="400.0" y="882.1800000000001" text-anchor="middle" font-family="Consolas, monospace"
+      font-size="22" letter-spacing="4" fill="#1c6c72">your desktop, your universe</text>
+<rect x="40" y="40" width="720" height="1051" fill="none" stroke="#1c6c72"
+      stroke-width="1.5" opacity="0.6"/>
+</svg>
+</div>
+    <figcaption>craft · poster (SVG, printable)</figcaption></figure>
+  <figure><div style="width:260px"><svg xmlns="http://www.w3.org/2000/svg" width="470" height="470" viewBox="0 0 470 470">
+<rect width="470" height="470" fill="#12100c"/>
+<g stroke="#f4d06e" stroke-width="3.2" fill="none" stroke-linecap="round"><path d="M 60 60 Q 95.66945072410155 24.33054927589845 130 130 Q 165.66945072410155 94.33054927589845 130 200"/><path d="M 60 60 Q 95.66945072410155 24.33054927589845 130 130 Q 165.66945072410155 94.33054927589845 130 200" transform="scale(-1,1) translate(-470,0)"/><path d="M 200 60 Q 235.08782225829742 24.912177741702564 270 130 Q 305.0878222582974 94.91217774170256 270 200"/><path d="M 200 60 Q 235.08782225829742 24.912177741702564 270 130 Q 305.0878222582974 94.91217774170256 270 200" transform="scale(-1,1) translate(-470,0)"/><path d="M 60 130 Q 91.46819585117461 98.53180414882539 130 200 Q 161.4681958511746 168.5318041488254 130 270"/><path d="M 60 130 Q 91.46819585117461 98.53180414882539 130 200 Q 161.4681958511746 168.5318041488254 130 270" transform="scale(-1,1) translate(-470,0)"/><path d="M 130 130 Q 166.4546864664282 93.54531353357181 200 200 Q 236.4546864664282 163.5453135335718 200 270"/><path d="M 130 130 Q 166.4546864664282 93.54531353357181 200 200 Q 236.4546864664282 163.5453135335718 200 270" transform="scale(-1,1) translate(-470,0)"/><path d="M 60 200 Q 92.79809414139469 167.2019058586053 130 270 Q 162.7980941413947 237.2019058586053 130 340"/><path d="M 60 200 Q 92.79809414139469 167.2019058586053 130 270 Q 162.7980941413947 237.2019058586053 130 340" transform="scale(-1,1) translate(-470,0)"/><path d="M 130 200 Q 168.46801878491237 161.53198121508763 200 270 Q 238.46801878491237 231.53198121508763 200 340"/><path d="M 130 200 Q 168.46801878491237 161.53198121508763 200 270 Q 238.46801878491237 231.53198121508763 200 340" transform="scale(-1,1) translate(-470,0)"/><path d="M 200 200 Q 229.86905976734226 170.13094023265774 270 270 Q 299.86905976734226 240.13094023265774 270 340"/><path d="M 200 200 Q 229.86905976734226 170.13094023265774 270 270 Q 299.86905976734226 240.13094023265774 270 340" transform="scale(-1,1) translate(-470,0)"/></g><g><circle cx="60" cy="60" r="2.6" fill="#f4d06e" opacity="0.75"/><circle cx="130" cy="60" r="2.6" fill="#f4d06e" opacity="0.75"/><circle cx="200" cy="60" r="2.6" fill="#f4d06e" opacity="0.75"/><circle cx="270" cy="60" r="2.6" fill="#f4d06e" opacity="0.75"/><circle cx="340" cy="60" r="2.6" fill="#f4d06e" opacity="0.75"/><circle cx="410" cy="60" r="2.6" fill="#f4d06e" opacity="0.75"/><circle cx="60" cy="130" r="2.6" fill="#f4d06e" opacity="0.75"/><circle cx="130" cy="130" r="2.6" fill="#f4d06e" opacity="0.75"/><circle cx="200" cy="130" r="2.6" fill="#f4d06e" opacity="0.75"/><circle cx="270" cy="130" r="2.6" fill="#f4d06e" opacity="0.75"/><circle cx="340" cy="130" r="2.6" fill="#f4d06e" opacity="0.75"/><circle cx="410" cy="130" r="2.6" fill="#f4d06e" opacity="0.75"/><circle cx="60" cy="200" r="2.6" fill="#f4d06e" opacity="0.75"/><circle cx="130" cy="200" r="2.6" fill="#f4d06e" opacity="0.75"/><circle cx="200" cy="200" r="2.6" fill="#f4d06e" opacity="0.75"/><circle cx="270" cy="200" r="2.6" fill="#f4d06e" opacity="0.75"/><circle cx="340" cy="200" r="2.6" fill="#f4d06e" opacity="0.75"/><circle cx="410" cy="200" r="2.6" fill="#f4d06e" opacity="0.75"/><circle cx="60" cy="270" r="2.6" fill="#f4d06e" opacity="0.75"/><circle cx="130" cy="270" r="2.6" fill="#f4d06e" opacity="0.75"/><circle cx="200" cy="270" r="2.6" fill="#f4d06e" opacity="0.75"/><circle cx="270" cy="270" r="2.6" fill="#f4d06e" opacity="0.75"/><circle cx="340" cy="270" r="2.6" fill="#f4d06e" opacity="0.75"/><circle cx="410" cy="270" r="2.6" fill="#f4d06e" opacity="0.75"/><circle cx="60" cy="340" r="2.6" fill="#f4d06e" opacity="0.75"/><circle cx="130" cy="340" r="2.6" fill="#f4d06e" opacity="0.75"/><circle cx="200" cy="340" r="2.6" fill="#f4d06e" opacity="0.75"/><circle cx="270" cy="340" r="2.6" fill="#f4d06e" opacity="0.75"/><circle cx="340" cy="340" r="2.6" fill="#f4d06e" opacity="0.75"/><circle cx="410" cy="340" r="2.6" fill="#f4d06e" opacity="0.75"/><circle cx="60" cy="410" r="2.6" fill="#f4d06e" opacity="0.75"/><circle cx="130" cy="410" r="2.6" fill="#f4d06e" opacity="0.75"/><circle cx="200" cy="410" r="2.6" fill="#f4d06e" opacity="0.75"/><circle cx="270" cy="410" r="2.6" fill="#f4d06e" opacity="0.75"/><circle cx="340" cy="410" r="2.6" fill="#f4d06e" opacity="0.75"/><circle cx="410" cy="410" r="2.6" fill="#f4d06e" opacity="0.75"/></g>
+</svg>
+</div>
+    <figcaption>craft · kolam, seeded and mirrored</figcaption></figure>
+  <figure><div style="width:200px"><svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 320 320">
+<rect width="200" height="200" fill="#0c1617"/>
+
+<circle cx="160" cy="160" r="120" fill="none" stroke="#47f1ff" stroke-width="3"/>
+<circle cx="160" cy="160" r="96" fill="none" stroke="#47f1ff" stroke-width="1.2" opacity="0.5"/>
+<path d="M 90 200 L 160 96 L 230 200" fill="none" stroke="#47f1ff" stroke-width="6"
+      stroke-linecap="round"/>
+<text x="160" y="182" text-anchor="middle" font-family="Consolas, monospace"
+      font-size="64" letter-spacing="4" fill="#47f1ff">AR</text>
+</svg>
+</div>
+    <figcaption>craft · monogram</figcaption></figure>
+  <figure style="max-width:420px"><pre>tetrad palette from #48f2ff
+  background  #0b1213   
+  surface     #17292b   
+  primary     #3df1ff   contrast vs background: 13.7:1
+  accent      #af51f5   contrast vs background: 4.8:1
+  ink         #f2fbff   contrast vs background: 18.0:1
+
+Body text on the background: 18.0:1 — passes WCAG AA (4.5:1)</pre>
+    <figcaption>craft · palette with measured contrast</figcaption></figure>
+</div>
+
+<div class="grid" style="margin-top:18px">
+    <section>
+      <h2>Marketing maths</h2>
+      <div class="ask">say: <code>funnel 20000 impressions 400 clicks 60 leads 12 sales · spend 5000 · revenue 24000</code></div>
+      <pre>Funnel, computed:
+  · CTR: 2.00%   (400 clicks ÷ 20000 impressions)
+  · click → lead: 15.00%   (60 leads ÷ 400 clicks)
+  · lead → sale: 20.00%   (12 sales ÷ 60 leads)
+  · impression → sale: 0.06%   (the only number that pays rent)
+  · CPC: 12.50   (spend ÷ clicks)
+  · CPL: 83.33   (spend ÷ leads)
+  · CAC: 416.67   (spend ÷ sales)
+  · CPM: 250.00   (spend ÷ impressions × 1000)
+  · ROAS: 4.80×   (revenue ÷ spend)
+  · profit before other costs: 19,000.00
+
+If a rate looks bad, fix the step above it, not the ad. Nothing here compares you to an industry average — those numbers are not mine to invent.</pre>
+    </section>
+    <section>
+      <h2>Hotel management</h2>
+      <div class="ask">say: <code>occupancy 24 rooms · 17 sold · 42500 room revenue · 26000 costs</code></div>
+      <pre>Occupancy: 70.8%   (rooms sold 17 ÷ 24 available)
+ADR: 2,500.00   (room revenue ÷ rooms sold)
+RevPAR: 1,770.83   (room revenue ÷ rooms available)
+TRevPAR: 2,145.83   (all revenue ÷ rooms available)
+GOPPAR: 1,062.50   ((revenue − costs) ÷ rooms available)
+Total gross margin: 49.5%
+
+Read them in this order: occupancy, then ADR, then RevPAR. Chasing occupancy with discounts raises the first and lowers the third — RevPAR is the one that pays salaries.
+Rule of thumb worth checking against your own books: dropping ADR by 10% needs roughly 11% more rooms sold just to stand still.</pre>
+    </section>
+    <section>
+      <h2>Business strategy</h2>
+      <div class="ask">say: <code>break even 90000 750 320</code></div>
+      <pre>Break-even: 209.3 units (round up to 210)
+  · contribution per unit: 430.00  (price 750 − variable 320)
+  · contribution margin: 57.3%
+  · revenue at break-even: 156,977
+  · every unit after that adds 430.00 before tax
+
+Sanity check: is 210 units a month realistic with your current capacity? If not, the fixed cost is the thing to change.</pre>
+    </section>
+    <section>
+      <h2>Travel finder</h2>
+      <div class="ask">say: <code>what is near Belagavi (200 km, heritage)</code></div>
+      <pre>Within 200 km of Belagavi, tagged heritage (4 found):
+  · Badami                   127 km  heritage, caves, history  best Nov-Feb, 1 day(s)
+  · Pattadakal               141 km  heritage, unesco  best Nov-Feb, 1 day(s)
+  · Aihole                   148 km  heritage, history  best Nov-Feb, 1 day(s)
+  · Vijayapura (Bijapur)     169 km  heritage, unesco  best Nov-Feb, 2 day(s)
+
+Distances are straight-line from place centroids; add roughly 20-35% for real roads in hill country.</pre>
+    </section>
+    <section>
+      <h2>Travel plan</h2>
+      <div class="ask">say: <code>plan a 3 day trip to Coorg</code></div>
+      <pre>Coorg (Madikeri) · 3 day(s), slow pace
+Base: Coorg (Madikeri) — Coffee estates, mist mornings, Abbey and Raja&#x27;s Seat
+Map: https://www.openstreetmap.org/?mlat=12.4244&amp;mlon=75.7382#map=11/12.4244/75.7382
+
+Day 1
+  · arrive, walk Coorg (Madikeri) centre, eat where the queue is local
+  · Sakleshpur (58 km) — Green route trek along the rail line, plantation stays
+Day 2
+  · Kukke Subramanya (62 km) — River temple at the foot of Kumara Parvatha
+Day 3
+  · Nagarhole (69 km) — Coracle safaris and dense forest; quieter than Bandipur
+
+Reality checks: hills roads average 30-35 km/h, so 90 km is half a day. Computed from my own coordinates — verify opening days on the map link, because I do not have live timings.</pre>
+    </section>
+    <section>
+      <h2>Data mining</h2>
+      <div class="ask">say: <code>profile sales.csv</code></div>
+      <pre>6 rows · 4 columns · sales.csv
+  city               text     unique 3
+  month              numeric  n=6  mean 1.50  median 1.50  sd 0.55  min 1.00  max 2.00
+  price              numeric  n=6  mean 1,003.33  median 805.00  sd 348.18  min 750.00  max 1,500.00
+  units              numeric  n=6  mean 130.83  median 107.50  sd 89.47  min 40.00  max 300.00
+
+Missing values are counted, never filled in. A filled-in number is a made-up number.
+
+Strongest pair correlations (only when |r| ≥ 0.3):
+  · month ↔ units: r = +0.582</pre>
+    </section>
+    <section>
+      <h2>Mentor</h2>
+      <div class="ask">say: <code>invert: get 20 direct bookings</code></div>
+      <pre>Inversion · get 20 direct bookings
+
+Instead of &quot;how do I achieve get 20 direct bookings?&quot;, answer: **how would I guarantee failure?**
+
+  1. What would make get 20 direct bookings impossible in 30 days? (list five, honestly)
+  2. Which of those am I already doing, a little?
+  3. What is the cheapest way to stop the top one this week?
+
+Why this works: the list of ways to fail is usually shorter, more concrete, and more
+actionable than the list of ways to succeed. Avoiding stupidity is easier than
+seeking brilliance — and it compounds faster.</pre>
+    </section>
+    <section>
+      <h2>Honest forecast</h2>
+      <div class="ask">say: <code>forecast 120 140 155 171 190 204 221 239</code></div>
+      <pre>Series: 8 values, slope +16.714 per step, r² 0.999, rmse 1.33
+
+Mechanical extrapolation (±1 rmse):
+  step +1        255.21    range       253.04 –       257.39
+  step +2        271.93    range       269.75 –       274.11
+  step +3        288.64    range       286.47 –       290.82
+
+What this is: a straight line through your own numbers, with the spread of past errors used as the band.
+What this is not: a forecast of anything that can change direction — policy, weather, a competitor, a festival, a rumour.
+r² is decent, so the trend is at least consistent — the band is the part to quote, never the centre line.</pre>
+    </section>
+    <section>
+      <h2>Defensive security</h2>
+      <div class="ask">say: <code>is this phishing?</code></div>
+      <pre>Risk: HIGH — do not click, do not reply (score 9)
+Signals:
+  · manufactured urgency
+  · asks you to confirm credentials
+  · asks for a secret
+  · lookalike domain for paytm: paytm-kyc.xyz
+
+What to do either way: never open the link. Go to the company&#x27;s site by typing the address yourself, and call the number on the card or the bill. Real organisations do not ask for OTPs, PINs or passwords.</pre>
+    </section></div>
+
+<footer>Every number here was computed locally. Predictions are labelled; refusals are in the code.</footer>
+</body></html>

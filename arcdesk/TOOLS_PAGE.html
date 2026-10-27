@@ -1,0 +1,967 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Arc Desk — tools</title><style>
+
+:root{--bg:#01050a;--ink:#dff6ff;--dim:#6d8797;--arc:#48f2ff;--line:#12303d;
+      --warn:#ffb03a;--card:#040d14}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 50% -20%,#062733 0%,var(--bg) 55%);
+     color:var(--ink);font:15px/1.55 "Segoe UI",system-ui,sans-serif;padding:28px 22px 64px}
+h1{font-size:26px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 4px;
+   font-weight:600}
+h1 span{color:var(--arc)}
+.sub{color:var(--dim);margin:0 0 18px;font-size:13px}
+.bar{position:sticky;top:0;z-index:5;background:linear-gradient(#01050aee,#01050acc);
+     backdrop-filter:blur(6px);padding:12px 0 14px;border-bottom:1px solid var(--line);
+     display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+input,select{background:var(--card);border:1px solid var(--line);color:var(--ink);
+     border-radius:8px;padding:9px 12px;font:inherit;outline:none}
+input{flex:1 1 260px;min-width:180px}
+input:focus,select:focus{border-color:var(--arc);box-shadow:0 0 0 3px #48f2ff22}
+.count{color:var(--dim);font-size:13px;white-space:nowrap}
+.chip{border:1px solid var(--line);border-radius:999px;padding:5px 12px;cursor:pointer;
+     font-size:13px;color:var(--dim);background:transparent}
+.chip[aria-pressed=true]{border-color:var(--arc);color:var(--bg);background:var(--arc);
+     font-weight:600}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));
+     margin-top:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 15px}
+.card:hover{border-color:#1d5a6e}
+.card h3{margin:0 0 6px;font:600 15px/1.3 "Cascadia Code",ui-monospace,monospace;
+     color:var(--arc);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tag{font:500 10px/1 "Segoe UI",sans-serif;letter-spacing:.1em;text-transform:uppercase;
+     border:1px solid var(--warn);color:var(--warn);border-radius:999px;padding:4px 7px}
+.tag.os{border-color:#5a7d8c;color:#8fb0be}
+.desc{color:#b9d4e0;font-size:13.5px;margin:0 0 10px}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+td{padding:3px 6px 3px 0;vertical-align:top;border-top:1px solid #0c2029}
+td:first-child{font-family:"Cascadia Code",ui-monospace,monospace;color:#e9fbff;width:34%}
+td.ty{color:var(--dim);width:20%}
+td.rq{width:44px;color:var(--arc)}
+.enum{color:#88a9b8}
+h2{font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);
+   margin:34px 0 6px;font-weight:600}
+.sec{color:var(--dim);font-size:13px;margin:0 0 4px}
+.none{color:var(--dim);padding:26px 0}
+footer{margin-top:44px;color:var(--dim);font-size:12.5px;border-top:1px solid var(--line);
+   padding-top:14px}
+code{font-family:"Cascadia Code",ui-monospace,monospace;color:var(--arc)}
+
+</style></head><body>
+<h1>Arc Desk <span>·  every tool</span></h1>
+<p class="sub">88 tools, generated from the registry at build time. Press <code>/</code> to search, <code>Esc</code> to clear.</p>
+<div class="bar">
+<input id="q" type="search" placeholder="search: backup, pdf, video, volume, ocr…" autocomplete="off" aria-label="search tools">
+<select id="cat" aria-label="section"><option value="">every section</option><option value="Talk to it">Talk to it</option><option value="Machine control">Machine control</option><option value="The magical layer">The magical layer</option><option value="Files, without risk">Files, without risk</option><option value="Screen understanding">Screen understanding</option><option value="Communication">Communication</option><option value="Media studio">Media studio</option><option value="Thinking tools">Thinking tools</option><option value="Memory and day">Memory and day</option><option value="This machine, checked">This machine, checked</option></select>
+<label class="count"><input id="yes" type="checkbox" style="vertical-align:-1px"> asks first only</label>
+<span id="count" class="count"></span>
+</div><div class="bar" style="position:static;border:0;padding-top:0">
+<button class="chip" data-section="" aria-pressed="true">all</button><button class="chip" data-section="Talk to it" aria-pressed="false">Talk to it</button><button class="chip" data-section="Machine control" aria-pressed="false">Machine control</button><button class="chip" data-section="The magical layer" aria-pressed="false">The magical layer</button><button class="chip" data-section="Files, without risk" aria-pressed="false">Files, without risk</button><button class="chip" data-section="Screen understanding" aria-pressed="false">Screen understanding</button><button class="chip" data-section="Communication" aria-pressed="false">Communication</button><button class="chip" data-section="Media studio" aria-pressed="false">Media studio</button><button class="chip" data-section="Thinking tools" aria-pressed="false">Thinking tools</button><button class="chip" data-section="Memory and day" aria-pressed="false">Memory and day</button><button class="chip" data-section="This machine, checked" aria-pressed="false">This machine, checked</button>
+</div>
+<section data-section="Talk to it"><h2>Talk to it (12)</h2><p class="sec">The everyday things you type or say.</p>
+<div class="grid">
+<div class="card" data-section="Talk to it" data-confirm="0" data-text="open_app launch an application on this pc by name (notepad, calculator, files, ...). app ">
+<h3>open_app</h3>
+<p class="desc">Launch an application on this PC by name (notepad, calculator, files, ...).</p>
+<table>
+<tr><td>app</td><td class="ty">string</td><td class="rq">●</td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Talk to it" data-confirm="0" data-text="open_url open a website in the user&#x27;s default browser. url ">
+<h3>open_url</h3>
+<p class="desc">Open a website in the user&#x27;s default browser.</p>
+<table>
+<tr><td>url</td><td class="ty">string</td><td class="rq">●</td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Talk to it" data-confirm="0" data-text="web_search open a browser search. cannot read results back. query ">
+<h3>web_search</h3>
+<p class="desc">Open a browser search. Cannot read results back.</p>
+<table>
+<tr><td>query</td><td class="ty">string</td><td class="rq">●</td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Talk to it" data-confirm="0" data-text="note save a note to the arc desk notes file. text ">
+<h3>note</h3>
+<p class="desc">Save a note to the Arc Desk notes file.</p>
+<table>
+<tr><td>text</td><td class="ty">string</td><td class="rq">●</td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Talk to it" data-confirm="0" data-text="read_notes read back recent notes. limit ">
+<h3>read_notes</h3>
+<p class="desc">Read back recent notes.</p>
+<table>
+<tr><td>limit</td><td class="ty">integer</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Talk to it" data-confirm="0" data-text="clipboard read or set the clipboard. action text get set">
+<h3>clipboard</h3>
+<p class="desc">Read or set the clipboard.</p>
+<table>
+<tr><td>action</td><td class="ty">string</td><td class="rq">●</td><td><span class="enum">get · set</span></td></tr>
+<tr><td>text</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Talk to it" data-confirm="0" data-text="weather current weather for the configured city (needs weather enabled).  ">
+<h3>weather</h3>
+<p class="desc">Current weather for the configured city (needs weather enabled).</p>
+</div>
+<div class="card" data-section="Talk to it" data-confirm="0" data-text="time current local time and date.  ">
+<h3>time</h3>
+<p class="desc">Current local time and date.</p>
+</div>
+<div class="card" data-section="Talk to it" data-confirm="0" data-text="profile what jarvis remembers about you: name, editor, city, reply language, volume taste. action=get|set|forget|clear. action key value get set forget clear">
+<h3>profile</h3>
+<p class="desc">What JARVIS remembers about you: name, editor, city, reply language, volume taste. action=get|set|forget|clear.</p>
+<table>
+<tr><td>action</td><td class="ty">string</td><td class="rq"></td><td><span class="enum">get · set · forget · clear</span></td></tr>
+<tr><td>key</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>value</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Talk to it" data-confirm="0" data-text="list_tools the full catalogue of what you can do, when the few tools you were given are not enough. pass a query to filter. query ">
+<h3>list_tools</h3>
+<p class="desc">The full catalogue of what you can do, when the few tools you were given are not enough. Pass a query to filter.</p>
+<table>
+<tr><td>query</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Talk to it" data-confirm="0" data-text="calc evaluate arithmetic exactly: &#x27;(1234*0.18)+56&#x27;, &#x27;18% of 4500&#x27;, &#x27;sqrt(144)+2**10&#x27;. use this instead of doing maths in your head. expression ">
+<h3>calc</h3>
+<p class="desc">Evaluate arithmetic exactly: &#x27;(1234*0.18)+56&#x27;, &#x27;18% of 4500&#x27;, &#x27;sqrt(144)+2**10&#x27;. Use this instead of doing maths in your head.</p>
+<table>
+<tr><td>expression</td><td class="ty">string</td><td class="rq">●</td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Talk to it" data-confirm="0" data-text="convert convert units: 5 km to mile, 100 f to c, 2 kg to lb. value from_unit to_unit ">
+<h3>convert</h3>
+<p class="desc">Convert units: 5 km to mile, 100 f to c, 2 kg to lb.</p>
+<table>
+<tr><td>value</td><td class="ty">number</td><td class="rq">●</td><td></td></tr>
+<tr><td>from_unit</td><td class="ty">string</td><td class="rq">●</td><td></td></tr>
+<tr><td>to_unit</td><td class="ty">string</td><td class="rq">●</td><td></td></tr>
+</table>
+</div>
+</section>
+<section data-section="Machine control"><h2>Machine control (15)</h2><p class="sec">Volume, screen, power, windows and the keyboard.</p>
+<div class="grid">
+<div class="card" data-section="Machine control" data-confirm="0" data-text="system_report live cpu, ram, disk, battery and top memory processes.  ">
+<h3>system_report</h3>
+<p class="desc">Live CPU, RAM, disk, battery and top memory processes.</p>
+</div>
+<div class="card" data-section="Machine control" data-confirm="0" data-text="running_apps list the heaviest running processes by memory.  ">
+<h3>running_apps</h3>
+<p class="desc">List the heaviest running processes by memory.</p>
+</div>
+<div class="card" data-section="Machine control" data-confirm="1" data-text="close_app terminate a running application by process name. app ">
+<h3>close_app<span class="tag">asks first</span></h3>
+<p class="desc">Terminate a running application by process name.</p>
+<table>
+<tr><td>app</td><td class="ty">string</td><td class="rq">●</td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Machine control" data-confirm="0" data-text="set_volume set system output volume, 0-100. level ">
+<h3>set_volume</h3>
+<p class="desc">Set system output volume, 0-100.</p>
+<table>
+<tr><td>level</td><td class="ty">integer</td><td class="rq">●</td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Machine control" data-confirm="0" data-text="mute toggle system mute.  ">
+<h3>mute</h3>
+<p class="desc">Toggle system mute.</p>
+</div>
+<div class="card" data-section="Machine control" data-confirm="0" data-text="media control media playback: play_pause, next, previous, stop. action ">
+<h3>media</h3>
+<p class="desc">Control media playback: play_pause, next, previous, stop.</p>
+<table>
+<tr><td>action</td><td class="ty">string</td><td class="rq">●</td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Machine control" data-confirm="0" data-text="brightness set screen brightness, 0-100. level ">
+<h3>brightness</h3>
+<p class="desc">Set screen brightness, 0-100.</p>
+<table>
+<tr><td>level</td><td class="ty">integer</td><td class="rq">●</td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Machine control" data-confirm="0" data-text="screenshot capture the screen to a png file. path ">
+<h3>screenshot</h3>
+<p class="desc">Capture the screen to a PNG file.</p>
+<table>
+<tr><td>path</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Machine control" data-confirm="0" data-text="lock_screen lock the workstation immediately.  ">
+<h3>lock_screen</h3>
+<p class="desc">Lock the workstation immediately.</p>
+</div>
+<div class="card" data-section="Machine control" data-confirm="1" data-text="power shutdown, restart, sleep or cancel a pending shutdown. action shutdown restart sleep cancel">
+<h3>power<span class="tag">asks first</span></h3>
+<p class="desc">Shutdown, restart, sleep or cancel a pending shutdown.</p>
+<table>
+<tr><td>action</td><td class="ty">string</td><td class="rq">●</td><td><span class="enum">shutdown · restart · sleep · cancel</span></td></tr>
+</table>
+</div>
+<div class="card" data-section="Machine control" data-confirm="0" data-text="timer start a countdown timer that notifies when it finishes. minutes label ">
+<h3>timer</h3>
+<p class="desc">Start a countdown timer that notifies when it finishes.</p>
+<table>
+<tr><td>minutes</td><td class="ty">number</td><td class="rq">●</td><td></td></tr>
+<tr><td>label</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Machine control" data-confirm="0" data-text="windows see and control open windows: list, focus, minimize, maximize, restore, minimize_all, close_window. pass a window title fragment. action title list focus minimize maximize restore minimize_all close_window">
+<h3>windows</h3>
+<p class="desc">See and control open windows: list, focus, minimize, maximize, restore, minimize_all, close_window. Pass a window title fragment.</p>
+<table>
+<tr><td>action</td><td class="ty">string</td><td class="rq"></td><td><span class="enum">list · focus · minimize · maximize · restore · minimize_all · close_window</span></td></tr>
+<tr><td>title</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Machine control" data-confirm="0" data-text="type_text type text into whichever window currently has focus. text ">
+<h3>type_text</h3>
+<p class="desc">Type text into whichever window currently has focus.</p>
+<table>
+<tr><td>text</td><td class="ty">string</td><td class="rq">●</td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Machine control" data-confirm="0" data-text="press press keys in the focused window: enter, ctrl+s, alt+tab, ctrl+shift+t. keys ">
+<h3>press</h3>
+<p class="desc">Press keys in the focused window: enter, ctrl+s, alt+tab, ctrl+shift+t.</p>
+<table>
+<tr><td>keys</td><td class="ty">string</td><td class="rq">●</td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Machine control" data-confirm="0" data-text="action_log what jarvis has actually done on this machine, most recent last. limit ">
+<h3>action_log</h3>
+<p class="desc">What JARVIS has actually done on this machine, most recent last.</p>
+<table>
+<tr><td>limit</td><td class="ty">integer</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+</section>
+<section data-section="The magical layer"><h2>The magical layer (7)</h2><p class="sec">The bits that make it feel like a film.</p>
+<div class="grid">
+<div class="card" data-section="The magical layer" data-confirm="0" data-text="magic enter or leave magic mode (fullscreen jarvis + wallpaper swap). action on off toggle">
+<h3>magic</h3>
+<p class="desc">Enter or leave magic mode (fullscreen JARVIS + wallpaper swap).</p>
+<table>
+<tr><td>action</td><td class="ty">string</td><td class="rq">●</td><td><span class="enum">on · off · toggle</span></td></tr>
+</table>
+</div>
+<div class="card" data-section="The magical layer" data-confirm="0" data-text="charms show or hide the floating gravity charms on the desktop. action show hide edit">
+<h3>charms</h3>
+<p class="desc">Show or hide the floating gravity charms on the desktop.</p>
+<table>
+<tr><td>action</td><td class="ty">string</td><td class="rq">●</td><td><span class="enum">show · hide · edit</span></td></tr>
+</table>
+</div>
+<div class="card" data-section="The magical layer" data-confirm="0" data-text="arc_mode switch arc desk&#x27;s power mode: focus, chill, gaming, night. mode focus chill gaming night">
+<h3>arc_mode</h3>
+<p class="desc">Switch Arc Desk&#x27;s power mode: focus, chill, gaming, night.</p>
+<table>
+<tr><td>mode</td><td class="ty">string</td><td class="rq">●</td><td><span class="enum">focus · chill · gaming · night</span></td></tr>
+</table>
+</div>
+<div class="card" data-section="The magical layer" data-confirm="0" data-text="draw draw a picture: elephant, cat, dog, house, tree, flower, car, robot, fish or sun. vector sketch, offline, instant. subject colour extras ">
+<h3>draw</h3>
+<p class="desc">Draw a picture: elephant, cat, dog, house, tree, flower, car, robot, fish or sun. Vector sketch, offline, instant.</p>
+<table>
+<tr><td>subject</td><td class="ty">string</td><td class="rq">●</td><td></td></tr>
+<tr><td>colour</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>extras</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="The magical layer" data-confirm="0" data-text="photo find a real photograph (not a drawing) of anything, from free licences — no key, no account, no gpu. reports the photographer and the licence. use this when the person says &#x27;real&#x27;, &#x27;actual&#x27; or &#x27;photo of&#x27;. query save_to ">
+<h3>photo</h3>
+<p class="desc">Find a real photograph (not a drawing) of anything, from free licences — no key, no account, no GPU. Reports the photographer and the licence. Use this when the person says &#x27;real&#x27;, &#x27;actual&#x27; or &#x27;photo of&#x27;.</p>
+<table>
+<tr><td>query</td><td class="ty">string</td><td class="rq">●</td><td></td></tr>
+<tr><td>save_to</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="The magical layer" data-confirm="0" data-text="art_edit change the picture already drawn: colour, size, position, rotation, add or remove scenery, undo. instruction ">
+<h3>art_edit</h3>
+<p class="desc">Change the picture already drawn: colour, size, position, rotation, add or remove scenery, undo.</p>
+<table>
+<tr><td>instruction</td><td class="ty">string</td><td class="rq">●</td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="The magical layer" data-confirm="0" data-text="holo project the fullscreen holographic deck — live cpu, memory, network, storage, processes and a wireframe globe with the reactor core. say &#x27;close the deck&#x27; to dismiss it. action show close">
+<h3>holo</h3>
+<p class="desc">Project the fullscreen holographic deck — live CPU, memory, network, storage, processes and a wireframe globe with the reactor core. Say &#x27;close the deck&#x27; to dismiss it.</p>
+<table>
+<tr><td>action</td><td class="ty">string</td><td class="rq"></td><td><span class="enum">show · close</span></td></tr>
+</table>
+</div>
+</section>
+<section data-section="Files, without risk"><h2>Files, without risk (8)</h2><p class="sec">Read-only by default; edits write a new file.</p>
+<div class="grid">
+<div class="card" data-section="Files, without risk" data-confirm="0" data-text="file_op create or change files: mkdir, write, append, copy, rename, move. stays inside the home folder. action path target text mkdir write append copy rename move">
+<h3>file_op</h3>
+<p class="desc">Create or change files: mkdir, write, append, copy, rename, move. Stays inside the home folder.</p>
+<table>
+<tr><td>action</td><td class="ty">string</td><td class="rq">●</td><td><span class="enum">mkdir · write · append · copy · rename · move</span></td></tr>
+<tr><td>path</td><td class="ty">string</td><td class="rq">●</td><td></td></tr>
+<tr><td>target</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>text</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Files, without risk" data-confirm="1" data-text="file_delete delete a file or empty folder inside the home folder. path ">
+<h3>file_delete<span class="tag">asks first</span></h3>
+<p class="desc">Delete a file or empty folder inside the home folder.</p>
+<table>
+<tr><td>path</td><td class="ty">string</td><td class="rq">●</td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Files, without risk" data-confirm="1" data-text="run_command run a shell command and return its output. gated and blocklisted. command timeout ">
+<h3>run_command<span class="tag">asks first</span></h3>
+<p class="desc">Run a shell command and return its output. Gated and blocklisted.</p>
+<table>
+<tr><td>command</td><td class="ty">string</td><td class="rq">●</td><td></td></tr>
+<tr><td>timeout</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Files, without risk" data-confirm="0" data-text="read_file read any file — pdf, docx, xlsx, pptx, csv, json, txt, image (ocr), audio/video (metadata) — and summarise, review, outline or return its text. path mode limit summary review outline text">
+<h3>read_file</h3>
+<p class="desc">Read ANY file — pdf, docx, xlsx, pptx, csv, json, txt, image (OCR), audio/video (metadata) — and summarise, review, outline or return its text.</p>
+<table>
+<tr><td>path</td><td class="ty">string</td><td class="rq">●</td><td></td></tr>
+<tr><td>mode</td><td class="ty">string</td><td class="rq"></td><td><span class="enum">summary · review · outline · text</span></td></tr>
+<tr><td>limit</td><td class="ty">integer</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Files, without risk" data-confirm="0" data-text="edit_file edit a file without touching the original: resize, crop, rotate, trim, convert, find-and-replace, add text, make a gif, rotate pdf pages, set a spreadsheet cell. writes a new copy. path op width height angle start duration find replace text value cell sheet fmt fps pages position factor ">
+<h3>edit_file</h3>
+<p class="desc">Edit a file without touching the original: resize, crop, rotate, trim, convert, find-and-replace, add text, make a gif, rotate pdf pages, set a spreadsheet cell. Writes a new copy.</p>
+<table>
+<tr><td>path</td><td class="ty">string</td><td class="rq">●</td><td></td></tr>
+<tr><td>op</td><td class="ty">string</td><td class="rq">●</td><td></td></tr>
+<tr><td>width</td><td class="ty">integer</td><td class="rq"></td><td></td></tr>
+<tr><td>height</td><td class="ty">integer</td><td class="rq"></td><td></td></tr>
+<tr><td>angle</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>start</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>duration</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>find</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>replace</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>text</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>value</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>cell</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>sheet</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>fmt</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>fps</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>pages</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>position</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>factor</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Files, without risk" data-confirm="0" data-text="find_file search the user&#x27;s own files by name across their real folders (and inside small text files when asked). read-only — names, sizes and dates only. query name kind grep refresh_index ">
+<h3>find_file</h3>
+<p class="desc">Search the user&#x27;s own files by name across their real folders (and inside small text files when asked). Read-only — names, sizes and dates only.</p>
+<table>
+<tr><td>query</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>name</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>kind</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>grep</td><td class="ty">boolean</td><td class="rq"></td><td></td></tr>
+<tr><td>refresh_index</td><td class="ty">boolean</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Files, without risk" data-confirm="1" data-text="backup copy your own folders to another disk and prove the copy: every file is sha-256 hashed on the destination. never overwrites, never deletes, never touches the originals; refuses to copy a folder into itself or fill a disk. action source target include verify dry_run copy plan verify list drives">
+<h3>backup<span class="tag">asks first</span></h3>
+<p class="desc">Copy your own folders to another disk and PROVE the copy: every file is SHA-256 hashed on the destination. Never overwrites, never deletes, never touches the originals; refuses to copy a folder into itself or fill a disk.</p>
+<table>
+<tr><td>action</td><td class="ty">string</td><td class="rq"></td><td><span class="enum">copy · plan · verify · list · drives</span></td></tr>
+<tr><td>source</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>target</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>include</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>verify</td><td class="ty">boolean</td><td class="rq"></td><td></td></tr>
+<tr><td>dry_run</td><td class="ty">boolean</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Files, without risk" data-confirm="0" data-text="search_inside search the words inside your own documents — word, excel, powerpoint, pdf, csv, text — and quote the matching line with its file and line number. read-only; images only with ocr on. action query roots ocr limit search index ocr stats forget">
+<h3>search_inside</h3>
+<p class="desc">Search the WORDS INSIDE your own documents — Word, Excel, PowerPoint, PDF, CSV, text — and quote the matching line with its file and line number. Read-only; images only with OCR on.</p>
+<table>
+<tr><td>action</td><td class="ty">string</td><td class="rq"></td><td><span class="enum">search · index · ocr · stats · forget</span></td></tr>
+<tr><td>query</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>roots</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>ocr</td><td class="ty">boolean</td><td class="rq"></td><td></td></tr>
+<tr><td>limit</td><td class="ty">integer</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+</section>
+<section data-section="Screen understanding"><h2>Screen understanding (6)</h2><p class="sec">OCR, controls and clicking — the machine-acting layer.</p>
+<div class="grid">
+<div class="card" data-section="Screen understanding" data-confirm="0" data-text="screen_text read the text currently visible on the screen (ocr). use this to answer &#x27;what does this error say&#x27; or to find a button. lang ">
+<h3>screen_text</h3>
+<p class="desc">Read the text currently visible on the screen (OCR). Use this to answer &#x27;what does this error say&#x27; or to find a button.</p>
+<table>
+<tr><td>lang</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Screen understanding" data-confirm="0" data-text="click_text find words on screen and click them. works in any app, including ones with no accessibility tree. text double ">
+<h3>click_text</h3>
+<p class="desc">Find words on screen and click them. Works in any app, including ones with no accessibility tree.</p>
+<table>
+<tr><td>text</td><td class="ty">string</td><td class="rq">●</td><td></td></tr>
+<tr><td>double</td><td class="ty">boolean</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Screen understanding" data-confirm="0" data-text="click_at click an exact pixel position on screen. x y button left right middle">
+<h3>click_at</h3>
+<p class="desc">Click an exact pixel position on screen.</p>
+<table>
+<tr><td>x</td><td class="ty">integer</td><td class="rq">●</td><td></td></tr>
+<tr><td>y</td><td class="ty">integer</td><td class="rq">●</td><td></td></tr>
+<tr><td>button</td><td class="ty">string</td><td class="rq"></td><td><span class="enum">left · right · middle</span></td></tr>
+</table>
+</div>
+<div class="card" data-section="Screen understanding" data-confirm="0" data-text="ui_controls list the clickable/typeable controls of the focused window with their exact names. limit ">
+<h3>ui_controls</h3>
+<p class="desc">List the clickable/typeable controls of the focused window with their exact names.</p>
+<table>
+<tr><td>limit</td><td class="ty">integer</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Screen understanding" data-confirm="0" data-text="ui_act click, focus or fill a control of the focused window by its name. falls back to reading the screen when there is no accessibility tree. name action value click set focus">
+<h3>ui_act</h3>
+<p class="desc">Click, focus or fill a control of the focused window by its name. Falls back to reading the screen when there is no accessibility tree.</p>
+<table>
+<tr><td>name</td><td class="ty">string</td><td class="rq">●</td><td></td></tr>
+<tr><td>action</td><td class="ty">string</td><td class="rq"></td><td><span class="enum">click · set · focus</span></td></tr>
+<tr><td>value</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Screen understanding" data-confirm="0" data-text="look look at the user&#x27;s screen and answer from it. runs ocr and returns the visible text plus the screenshot path. use this for &#x27;what does this error say&#x27;, &#x27;what is on my screen&#x27;, &#x27;summarise this page&#x27;. question lang ">
+<h3>look</h3>
+<p class="desc">Look at the user&#x27;s screen and answer from it. Runs OCR and returns the visible text plus the screenshot path. Use this for &#x27;what does this error say&#x27;, &#x27;what is on my screen&#x27;, &#x27;summarise this page&#x27;.</p>
+<table>
+<tr><td>question</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>lang</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+</section>
+<section data-section="Communication"><h2>Communication (4)</h2><p class="sec">Mail, calendar, WhatsApp.</p>
+<div class="grid">
+<div class="card" data-section="Communication" data-confirm="1" data-text="email_send send an email through the user&#x27;s own smtp account. to subject body attachment ">
+<h3>email_send<span class="tag">asks first</span></h3>
+<p class="desc">Send an email through the user&#x27;s own SMTP account.</p>
+<table>
+<tr><td>to</td><td class="ty">string</td><td class="rq">●</td><td></td></tr>
+<tr><td>subject</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>body</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>attachment</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Communication" data-confirm="0" data-text="email_draft open the user&#x27;s mail app with a draft already written (no password needed). to subject body ">
+<h3>email_draft</h3>
+<p class="desc">Open the user&#x27;s mail app with a draft already written (no password needed).</p>
+<table>
+<tr><td>to</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>subject</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>body</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Communication" data-confirm="0" data-text="calendar add an event or list upcoming ones. writes real .ics files. action title when minutes days add list">
+<h3>calendar</h3>
+<p class="desc">Add an event or list upcoming ones. Writes real .ics files.</p>
+<table>
+<tr><td>action</td><td class="ty">string</td><td class="rq">●</td><td><span class="enum">add · list</span></td></tr>
+<tr><td>title</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>when</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>minutes</td><td class="ty">integer</td><td class="rq"></td><td></td></tr>
+<tr><td>days</td><td class="ty">integer</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Communication" data-confirm="1" data-text="whatsapp_send open whatsapp with a message written to a number. number message ">
+<h3>whatsapp_send<span class="tag">asks first</span></h3>
+<p class="desc">Open WhatsApp with a message written to a number.</p>
+<table>
+<tr><td>number</td><td class="ty">string</td><td class="rq">●</td><td></td></tr>
+<tr><td>message</td><td class="ty">string</td><td class="rq">●</td><td></td></tr>
+</table>
+</div>
+</section>
+<section data-section="Media studio"><h2>Media studio (6)</h2><p class="sec">Local, free, ffmpeg-backed. No cloud, no account.</p>
+<div class="grid">
+<div class="card" data-section="Media studio" data-confirm="0" data-text="make_media generate an image or a video from words — free and local. uses a local diffusion backend if one is running, otherwise makes an offline poster or a ken-burns motion clip. prompt kind width height seconds init_image style image video">
+<h3>make_media</h3>
+<p class="desc">Generate an image or a video from words — free and local. Uses a local diffusion backend if one is running, otherwise makes an offline poster or a ken-burns motion clip.</p>
+<table>
+<tr><td>prompt</td><td class="ty">string</td><td class="rq">●</td><td></td></tr>
+<tr><td>kind</td><td class="ty">string</td><td class="rq"></td><td><span class="enum">image · video</span></td></tr>
+<tr><td>width</td><td class="ty">integer</td><td class="rq"></td><td></td></tr>
+<tr><td>height</td><td class="ty">integer</td><td class="rq"></td><td></td></tr>
+<tr><td>seconds</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>init_image</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>style</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Media studio" data-confirm="0" data-text="video_studio edit video properly: join clips with 26 real transitions, apply 17 colour looks, fit to 9:16/1:1/16:9/21:9, burn a title, lay music under the voice with ducking, 10 ready templates (reel, story, ad, hotel tour, teaser). local ffmpeg, originals untouched. action clips template transition look music title subtitle seconds strength start width fps path template look gif catalog">
+<h3>video_studio</h3>
+<p class="desc">Edit video properly: join clips with 26 real transitions, apply 17 colour looks, fit to 9:16/1:1/16:9/21:9, burn a title, lay music under the voice with ducking, 10 ready templates (reel, story, ad, hotel tour, teaser). Local ffmpeg, originals untouched.</p>
+<table>
+<tr><td>action</td><td class="ty">string</td><td class="rq"></td><td><span class="enum">template · look · gif · catalog</span></td></tr>
+<tr><td>clips</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>template</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>transition</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>look</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>music</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>title</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>subtitle</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>seconds</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>strength</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>start</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>width</td><td class="ty">integer</td><td class="rq"></td><td></td></tr>
+<tr><td>fps</td><td class="ty">integer</td><td class="rq"></td><td></td></tr>
+<tr><td>path</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Media studio" data-confirm="0" data-text="audio_studio edit audio properly: denoise, de-ess, gate, compress, 3-band eq, reverb, broadcast loudness (-14/-16 lufs), tempo without pitch shift, cut silence, list chapters, render a waveform, mix tracks, duck music under a voice. local ffmpeg, originals untouched. action path clips gains target_lufs bass mid treble start end factor seconds width height colour as_format duck denoise deess gate compress eq3 reverb loudnorm fade trim speed mono stereo_width silence_trim chapters waveform mix catalog">
+<h3>audio_studio</h3>
+<p class="desc">Edit audio properly: denoise, de-ess, gate, compress, 3-band EQ, reverb, broadcast loudness (-14/-16 LUFS), tempo without pitch shift, cut silence, list chapters, render a waveform, mix tracks, duck music under a voice. Local ffmpeg, originals untouched.</p>
+<table>
+<tr><td>action</td><td class="ty">string</td><td class="rq"></td><td><span class="enum">denoise · deess · gate · compress · eq3 · reverb · loudnorm · fade · trim · speed · mono · stereo_width · silence_trim · chapters · waveform · mix · catalog</span></td></tr>
+<tr><td>path</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>clips</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>gains</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>target_lufs</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>bass</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>mid</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>treble</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>start</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>end</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>factor</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>seconds</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>width</td><td class="ty">integer</td><td class="rq"></td><td></td></tr>
+<tr><td>height</td><td class="ty">integer</td><td class="rq"></td><td></td></tr>
+<tr><td>colour</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>as_format</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>duck</td><td class="ty">boolean</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Media studio" data-confirm="0" data-text="image_studio edit images properly: 16 looks (cinematic, noir, cyberpunk, vintage, duotone, tilt-shift), finished social cards at the right pixel size (post, story, youtube thumb, quote card, product card, passport), collages, and grade a whole folder. local pillow, originals untouched. action path images look template title subtitle footer accent background strength cols rows cell out look card collage batch catalog">
+<h3>image_studio</h3>
+<p class="desc">Edit images properly: 16 looks (cinematic, noir, cyberpunk, vintage, duotone, tilt-shift), finished social cards at the right pixel size (post, story, YouTube thumb, quote card, product card, passport), collages, and grade a whole folder. Local Pillow, originals untouched.</p>
+<table>
+<tr><td>action</td><td class="ty">string</td><td class="rq"></td><td><span class="enum">look · card · collage · batch · catalog</span></td></tr>
+<tr><td>path</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>images</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>look</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>template</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>title</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>subtitle</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>footer</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>accent</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>background</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>strength</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>cols</td><td class="ty">integer</td><td class="rq"></td><td></td></tr>
+<tr><td>rows</td><td class="ty">integer</td><td class="rq"></td><td></td></tr>
+<tr><td>cell</td><td class="ty">integer</td><td class="rq"></td><td></td></tr>
+<tr><td>out</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Media studio" data-confirm="0" data-text="play play a song or video right now — searches your indexed music and video (including external disks) and starts the best match in mpv/vlc/ffplay. instant start, real queue, stop when asked. also pause/next/previous/status. action query kind path folder queue play stop status pause resume next previous folder players audio video">
+<h3>play</h3>
+<p class="desc">Play a song or video right now — searches your indexed music and video (including external disks) and starts the best match in mpv/vlc/ffplay. Instant start, real queue, stop when asked. Also pause/next/previous/status.</p>
+<table>
+<tr><td>action</td><td class="ty">string</td><td class="rq"></td><td><span class="enum">play · stop · status · pause · resume · next · previous · folder · players</span></td></tr>
+<tr><td>query</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>kind</td><td class="ty">string</td><td class="rq"></td><td><span class="enum">audio · video</span></td></tr>
+<tr><td>path</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>folder</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>queue</td><td class="ty">boolean</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Media studio" data-confirm="0" data-text="library index and search your audio and video — music folders and any external/pen drive. scan / search / stats / drives / forget. read-only: it stats files, never opens or moves them. action roots query kind limit scan search stats drives forget">
+<h3>library</h3>
+<p class="desc">Index and search your audio and video — music folders and any external/pen drive. scan / search / stats / drives / forget. Read-only: it stats files, never opens or moves them.</p>
+<table>
+<tr><td>action</td><td class="ty">string</td><td class="rq"></td><td><span class="enum">scan · search · stats · drives · forget</span></td></tr>
+<tr><td>roots</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>query</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>kind</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>limit</td><td class="ty">integer</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+</section>
+<section data-section="Thinking tools"><h2>Thinking tools (20)</h2><p class="sec">Frameworks the model applies, with the arithmetic shown.</p>
+<div class="grid">
+<div class="card" data-section="Thinking tools" data-confirm="0" data-text="market share-market facts and arithmetic: quote, momentum analysis, position size for a risk budget, watchlist, screener, market brief. quote and analyse are measurements; nothing here is a prediction or advice. what symbol capital risk_pct stop_pct rule action days quote analyse project plan watch screen brief list add remove">
+<h3>market</h3>
+<p class="desc">Share-market facts and arithmetic: quote, momentum analysis, position size for a risk budget, watchlist, screener, market brief. Quote and analyse are measurements; nothing here is a prediction or advice.</p>
+<table>
+<tr><td>what</td><td class="ty">string</td><td class="rq"></td><td><span class="enum">quote · analyse · project · plan · watch · screen · brief</span></td></tr>
+<tr><td>symbol</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>capital</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>risk_pct</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>stop_pct</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>rule</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>action</td><td class="ty">string</td><td class="rq"></td><td><span class="enum">list · add · remove</span></td></tr>
+<tr><td>days</td><td class="ty">integer</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Thinking tools" data-confirm="0" data-text="health health information with safety rails: urgency triage for symptoms, published label ranges for common medicines, how a body system works, first aid. never a diagnosis, never a personal dose. what query question triage medicine anatomy first_aid">
+<h3>health</h3>
+<p class="desc">Health information with safety rails: urgency triage for symptoms, published label ranges for common medicines, how a body system works, first aid. Never a diagnosis, never a personal dose.</p>
+<table>
+<tr><td>what</td><td class="ty">string</td><td class="rq"></td><td><span class="enum">triage · medicine · anatomy · first_aid</span></td></tr>
+<tr><td>query</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>question</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Thinking tools" data-confirm="0" data-text="content create content: outline, draft, hooks, hashtags, or a posting calendar. measures word counts; never invents engagement numbers. action topic kind tone audience words weeks channels outline draft hooks hashtags calendar kinds save">
+<h3>content</h3>
+<p class="desc">Create content: outline, draft, hooks, hashtags, or a posting calendar. Measures word counts; never invents engagement numbers.</p>
+<table>
+<tr><td>action</td><td class="ty">string</td><td class="rq"></td><td><span class="enum">outline · draft · hooks · hashtags · calendar · kinds · save</span></td></tr>
+<tr><td>topic</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>kind</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>tone</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>audience</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>words</td><td class="ty">integer</td><td class="rq"></td><td></td></tr>
+<tr><td>weeks</td><td class="ty">integer</td><td class="rq"></td><td></td></tr>
+<tr><td>channels</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Thinking tools" data-confirm="0" data-text="marketing digital marketing maths: funnel rates, cac/roas, utm links, seo/readability of your own text, a/b sample size, channel playbooks. no invented benchmarks. action impressions clicks leads sales spend revenue url source medium campaign text keyword baseline lift business weeks channels product funnel utm seo sample plan email">
+<h3>marketing</h3>
+<p class="desc">Digital marketing maths: funnel rates, CAC/ROAS, UTM links, SEO/readability of your own text, A/B sample size, channel playbooks. No invented benchmarks.</p>
+<table>
+<tr><td>action</td><td class="ty">string</td><td class="rq"></td><td><span class="enum">funnel · utm · seo · sample · plan · email</span></td></tr>
+<tr><td>impressions</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>clicks</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>leads</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>sales</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>spend</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>revenue</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>url</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>source</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>medium</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>campaign</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>text</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>keyword</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>baseline</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>lift</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>business</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>weeks</td><td class="ty">integer</td><td class="rq"></td><td></td></tr>
+<tr><td>channels</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>product</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Thinking tools" data-confirm="0" data-text="strategy business strategy: swot, porter&#x27;s five forces, business model canvas, okrs, break-even, unit economics, weighted decisions. your facts, never invented ones. action subject fixed price variable cogs cac repeat options criteria period swot forces bmc okr break unit decide">
+<h3>strategy</h3>
+<p class="desc">Business strategy: SWOT, Porter&#x27;s five forces, business model canvas, OKRs, break-even, unit economics, weighted decisions. Your facts, never invented ones.</p>
+<table>
+<tr><td>action</td><td class="ty">string</td><td class="rq"></td><td><span class="enum">swot · forces · bmc · okr · break · unit · decide</span></td></tr>
+<tr><td>subject</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>fixed</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>price</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>variable</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>cogs</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>cac</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>repeat</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>options</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>criteria</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>period</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Thinking tools" data-confirm="0" data-text="hotel hotel and restaurant operations: occupancy/adr/revpar/goppar, menu costing, sop checklists, guest journey, rate ladder. action rooms sold room_revenue other_revenue costs items target_food_cost department stage base_rate weekend_uplift season_uplift kpi menu sop journey rates">
+<h3>hotel</h3>
+<p class="desc">Hotel and restaurant operations: occupancy/ADR/RevPAR/GOPPAR, menu costing, SOP checklists, guest journey, rate ladder.</p>
+<table>
+<tr><td>action</td><td class="ty">string</td><td class="rq"></td><td><span class="enum">kpi · menu · sop · journey · rates</span></td></tr>
+<tr><td>rooms</td><td class="ty">integer</td><td class="rq"></td><td></td></tr>
+<tr><td>sold</td><td class="ty">integer</td><td class="rq"></td><td></td></tr>
+<tr><td>room_revenue</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>other_revenue</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>costs</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>items</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>target_food_cost</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>department</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>stage</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>base_rate</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>weekend_uplift</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>season_uplift</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Thinking tools" data-confirm="0" data-text="travel travel ideas, place finder, openstreetmap links, distances, itineraries and honest budget bands — from a real dataset of places with coordinates. action place near radius_km tag days pace tier people travel_extra budget_word months near map distance ideas itinerary budget places">
+<h3>travel</h3>
+<p class="desc">Travel ideas, place finder, OpenStreetMap links, distances, itineraries and honest budget bands — from a real dataset of places with coordinates.</p>
+<table>
+<tr><td>action</td><td class="ty">string</td><td class="rq"></td><td><span class="enum">near · map · distance · ideas · itinerary · budget · places</span></td></tr>
+<tr><td>place</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>near</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>radius_km</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>tag</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>days</td><td class="ty">integer</td><td class="rq"></td><td></td></tr>
+<tr><td>pace</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>tier</td><td class="ty">integer</td><td class="rq"></td><td></td></tr>
+<tr><td>people</td><td class="ty">integer</td><td class="rq"></td><td></td></tr>
+<tr><td>travel_extra</td><td class="ty">number</td><td class="rq"></td><td></td></tr>
+<tr><td>budget_word</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>months</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Thinking tools" data-confirm="0" data-text="craft design and craft: colour palettes with measured contrast, printable posters, kolam patterns, borders, monograms — all original svg, all offline. action base scheme title subtitle name dots seed width kind save_it palette poster kolam border monogram">
+<h3>craft</h3>
+<p class="desc">Design and craft: colour palettes with measured contrast, printable posters, kolam patterns, borders, monograms — all original SVG, all offline.</p>
+<table>
+<tr><td>action</td><td class="ty">string</td><td class="rq"></td><td><span class="enum">palette · poster · kolam · border · monogram</span></td></tr>
+<tr><td>base</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>scheme</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>title</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>subtitle</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>name</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>dots</td><td class="ty">integer</td><td class="rq"></td><td></td></tr>
+<tr><td>seed</td><td class="ty">integer</td><td class="rq"></td><td></td></tr>
+<tr><td>width</td><td class="ty">integer</td><td class="rq"></td><td></td></tr>
+<tr><td>kind</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>save_it</td><td class="ty">boolean</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Thinking tools" data-confirm="0" data-text="mine data mining on your own csv/json: column profile, correlation with n, iqr outliers, group-by totals, trend slope, full report. action path column other key value agg periods profile report correlate outliers groupby trend">
+<h3>mine</h3>
+<p class="desc">Data mining on your own CSV/JSON: column profile, correlation with n, IQR outliers, group-by totals, trend slope, full report.</p>
+<table>
+<tr><td>action</td><td class="ty">string</td><td class="rq"></td><td><span class="enum">profile · report · correlate · outliers · groupby · trend</span></td></tr>
+<tr><td>path</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>column</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>other</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>key</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>value</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>agg</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>periods</td><td class="ty">integer</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Thinking tools" data-confirm="0" data-text="mentor mentor and lateral thinking: scamper, six hats, inversion, five whys, pre-mortem, first principles, second-order thinking, question banks. action subject scamper six_hats invert five_whys pre_mortem first_principles second_order questions rules">
+<h3>mentor</h3>
+<p class="desc">Mentor and lateral thinking: SCAMPER, six hats, inversion, five whys, pre-mortem, first principles, second-order thinking, question banks.</p>
+<table>
+<tr><td>action</td><td class="ty">string</td><td class="rq"></td><td><span class="enum">scamper · six_hats · invert · five_whys · pre_mortem · first_principles · second_order · questions · rules</span></td></tr>
+<tr><td>subject</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Thinking tools" data-confirm="0" data-text="foresight forecasting done honestly: arithmetic extrapolation with an error band, scenarios with stated assumptions, and an explicit &#x27;i do not know&#x27; about live world events. action question values periods horizon forecast scenario unknown verify rules now">
+<h3>foresight</h3>
+<p class="desc">Forecasting done honestly: arithmetic extrapolation with an error band, scenarios with stated assumptions, and an explicit &#x27;I do not know&#x27; about live world events.</p>
+<table>
+<tr><td>action</td><td class="ty">string</td><td class="rq"></td><td><span class="enum">forecast · scenario · unknown · verify · rules · now</span></td></tr>
+<tr><td>question</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>values</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>periods</td><td class="ty">integer</td><td class="rq"></td><td></td></tr>
+<tr><td>horizon</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Thinking tools" data-confirm="0" data-text="secure defensive security only: your own password&#x27;s entropy and crack-time estimate, phishing signals, this pc&#x27;s posture, a recovery plan. no cracking, no intrusion — ever. action text password phishing machine recovery refused">
+<h3>secure</h3>
+<p class="desc">Defensive security only: your own password&#x27;s entropy and crack-time estimate, phishing signals, this PC&#x27;s posture, a recovery plan. No cracking, no intrusion — ever.</p>
+<table>
+<tr><td>action</td><td class="ty">string</td><td class="rq"></td><td><span class="enum">password · phishing · machine · recovery · refused</span></td></tr>
+<tr><td>text</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Thinking tools" data-confirm="0" data-text="coach a mentor, analyst and listener: listen (name the feeling, one question), mentor (framework + 7-day plan), analyst (fact vs inference vs guess), decide (reversible test, weighted criteria), checkin, journal and reflection. local and private; never diagnoses, always offers real crisis numbers when they matter. mode text options action listen mentor analyst decide plan checkin journal reflection checkin">
+<h3>coach</h3>
+<p class="desc">A mentor, analyst and listener: listen (name the feeling, one question), mentor (framework + 7-day plan), analyst (fact vs inference vs guess), decide (reversible test, weighted criteria), checkin, journal and reflection. Local and private; never diagnoses, always offers real crisis numbers when they matter.</p>
+<table>
+<tr><td>mode</td><td class="ty">string</td><td class="rq"></td><td><span class="enum">listen · mentor · analyst · decide · plan · checkin</span></td></tr>
+<tr><td>text</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>options</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>action</td><td class="ty">string</td><td class="rq"></td><td><span class="enum">journal · reflection · checkin</span></td></tr>
+</table>
+</div>
+<div class="card" data-section="Thinking tools" data-confirm="0" data-text="explain read an error message — typed, in your clipboard, or on the screen via ocr — and say what it means, why it happens, and the ordered steps to fix it. refuses to invent a cause when it does not recognise the error. text where text clipboard screen catalog">
+<h3>explain</h3>
+<p class="desc">Read an error message — typed, in your clipboard, or on the screen via OCR — and say what it means, why it happens, and the ordered steps to fix it. Refuses to invent a cause when it does not recognise the error.</p>
+<table>
+<tr><td>text</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>where</td><td class="ty">string</td><td class="rq"></td><td><span class="enum">text · clipboard · screen · catalog</span></td></tr>
+</table>
+</div>
+<div class="card" data-section="Thinking tools" data-confirm="0" data-text="rates live exchange rates for a base currency (needs internet). base symbols ">
+<h3>rates</h3>
+<p class="desc">Live exchange rates for a base currency (needs internet).</p>
+<table>
+<tr><td>base</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>symbols</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Thinking tools" data-confirm="0" data-text="stock a live quote for a ticker or an index: reliance, nifty, sensex, bitcoin, gold, usd inr. includes the 30-day move. symbol ">
+<h3>stock</h3>
+<p class="desc">A live quote for a ticker or an index: RELIANCE, nifty, sensex, bitcoin, gold, usd inr. Includes the 30-day move.</p>
+<table>
+<tr><td>symbol</td><td class="ty">string</td><td class="rq">●</td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Thinking tools" data-confirm="0" data-text="project fit a straight line to recent prices and show the ±2σ band. a trend, not a prophecy — say so when you report it. symbol days ">
+<h3>project</h3>
+<p class="desc">Fit a straight line to recent prices and show the ±2σ band. A trend, not a prophecy — say so when you report it.</p>
+<table>
+<tr><td>symbol</td><td class="ty">string</td><td class="rq">●</td><td></td></tr>
+<tr><td>days</td><td class="ty">integer</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Thinking tools" data-confirm="0" data-text="market_summary one screen of the indian market: nifty, sensex, gold, usd/inr, bitcoin. fast when you&#x27;re asked &#x27;market eppadi&#x27;.  ">
+<h3>market_summary</h3>
+<p class="desc">One screen of the Indian market: NIFTY, SENSEX, gold, USD/INR, Bitcoin. Fast when you&#x27;re asked &#x27;market eppadi&#x27;.</p>
+</div>
+<div class="card" data-section="Thinking tools" data-confirm="0" data-text="teach_macro learn a repeatable voice command. example: &#x27;when i say work mode, open code and set volume 40&#x27;. only safe actions are kept. instruction ">
+<h3>teach_macro</h3>
+<p class="desc">Learn a repeatable voice command. Example: &#x27;when I say work mode, open code and set volume 40&#x27;. Only safe actions are kept.</p>
+<table>
+<tr><td>instruction</td><td class="ty">string</td><td class="rq">●</td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Thinking tools" data-confirm="0" data-text="macros list the learned voice commands, run one, or forget one. action name list run forget">
+<h3>macros</h3>
+<p class="desc">List the learned voice commands, run one, or forget one.</p>
+<table>
+<tr><td>action</td><td class="ty">string</td><td class="rq">●</td><td><span class="enum">list · run · forget</span></td></tr>
+<tr><td>name</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+</section>
+<section data-section="Memory and day"><h2>Memory and day (5)</h2><p class="sec">What it remembers, what it schedules.</p>
+<div class="grid">
+<div class="card" data-section="Memory and day" data-confirm="0" data-text="remind set, list or cancel a reminder. &#x27;in 20 minutes to stretch&#x27;, &#x27;at 18:30 to call amma&#x27;. it speaks when the time comes. action text which add list cancel clear">
+<h3>remind</h3>
+<p class="desc">Set, list or cancel a reminder. &#x27;in 20 minutes to stretch&#x27;, &#x27;at 18:30 to call amma&#x27;. It speaks when the time comes.</p>
+<table>
+<tr><td>action</td><td class="ty">string</td><td class="rq"></td><td><span class="enum">add · list · cancel · clear</span></td></tr>
+<tr><td>text</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>which</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Memory and day" data-confirm="0" data-text="focus start, check or stop a focus (pomodoro) session and report the week&#x27;s total. real elapsed time, logged locally. action minutes label start status stop stats">
+<h3>focus</h3>
+<p class="desc">Start, check or stop a focus (pomodoro) session and report the week&#x27;s total. Real elapsed time, logged locally.</p>
+<table>
+<tr><td>action</td><td class="ty">string</td><td class="rq"></td><td><span class="enum">start · status · stop · stats</span></td></tr>
+<tr><td>minutes</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>label</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Memory and day" data-confirm="0" data-text="briefing the morning briefing: time and date, calendar, reminders, focus totals and machine health — only from real sources. what full today">
+<h3>briefing</h3>
+<p class="desc">The morning briefing: time and date, calendar, reminders, focus totals and machine health — only from real sources.</p>
+<table>
+<tr><td>what</td><td class="ty">string</td><td class="rq"></td><td><span class="enum">full · today</span></td></tr>
+</table>
+</div>
+<div class="card" data-section="Memory and day" data-confirm="0" data-text="vault where your work lives. projects with their own folder, notes and progress saved as you go, and a one-command export to your desktop or any other folder (a verified copy — the vault keeps its own). never moves or overwrites your originals. action project text path dest where list create save checkpoint add export resume">
+<h3>vault</h3>
+<p class="desc">Where your work lives. Projects with their own folder, notes and progress saved as you go, and a one-command EXPORT to your Desktop or any other folder (a verified copy — the vault keeps its own). Never moves or overwrites your originals.</p>
+<table>
+<tr><td>action</td><td class="ty">string</td><td class="rq"></td><td><span class="enum">where · list · create · save · checkpoint · add · export · resume</span></td></tr>
+<tr><td>project</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>text</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>path</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>dest</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="Memory and day" data-confirm="0" data-text="facts what jarvis knows: 75 dated, sourced facts (india, world, science, tech, money, health, food, myths), plus your own indexed files, plus a real wikipedia lookup that cites its date. says &#x27;i do not know&#x27; when it does not. action question domain topic path ask coverage domain random unknown ingest fetch">
+<h3>facts</h3>
+<p class="desc">What JARVIS knows: 75 dated, sourced facts (India, world, science, tech, money, health, food, myths), plus your own indexed files, plus a real Wikipedia lookup that cites its date. Says &#x27;I do not know&#x27; when it does not.</p>
+<table>
+<tr><td>action</td><td class="ty">string</td><td class="rq"></td><td><span class="enum">ask · coverage · domain · random · unknown · ingest · fetch</span></td></tr>
+<tr><td>question</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>domain</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>topic</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>path</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+</section>
+<section data-section="This machine, checked"><h2>This machine, checked (5)</h2><p class="sec">Measured, not guessed.</p>
+<div class="grid">
+<div class="card" data-section="This machine, checked" data-confirm="0" data-text="mcp_servers list connected mcp tool servers and their status.  ">
+<h3>mcp_servers</h3>
+<p class="desc">List connected MCP tool servers and their status.</p>
+</div>
+<div class="card" data-section="This machine, checked" data-confirm="0" data-text="plan turn a request into ordered steps and execute them: scan a disk then play a song, build a reel, grade files, analyse a file, decide, plan a goal. &#x27;think&#x27; shows the steps without running them. action request confirm do think recipes">
+<h3>plan</h3>
+<p class="desc">Turn a request into ordered steps and execute them: scan a disk then play a song, build a reel, grade files, analyse a file, decide, plan a goal. &#x27;think&#x27; shows the steps without running them.</p>
+<table>
+<tr><td>action</td><td class="ty">string</td><td class="rq"></td><td><span class="enum">do · think · recipes</span></td></tr>
+<tr><td>request</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>confirm</td><td class="ty">boolean</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="This machine, checked" data-confirm="0" data-text="autostart start arc desk with your own account: one per-user entry, no admin, verified by reading it back, removable here or in task manager. off unless you ask. action status on off">
+<h3>autostart</h3>
+<p class="desc">Start Arc Desk with your own account: one per-user entry, no admin, verified by reading it back, removable here or in Task Manager. Off unless you ask.</p>
+<table>
+<tr><td>action</td><td class="ty">string</td><td class="rq"></td><td><span class="enum">status · on · off</span></td></tr>
+</table>
+</div>
+<div class="card" data-section="This machine, checked" data-confirm="0" data-text="pc_health why is this pc slow? two measured samples one second apart, then the actual cause with the number that proves it: ram pressure, paging, a cpu hog, a nearly-full drive, startup bloat, heat. suggests fixes; never kills or changes anything. action text scan quick startup checks">
+<h3>pc_health</h3>
+<p class="desc">Why is this PC slow? Two measured samples one second apart, then the actual cause with the number that proves it: RAM pressure, paging, a CPU hog, a nearly-full drive, startup bloat, heat. Suggests fixes; never kills or changes anything.</p>
+<table>
+<tr><td>action</td><td class="ty">string</td><td class="rq"></td><td><span class="enum">scan · quick · startup · checks</span></td></tr>
+<tr><td>text</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+<div class="card" data-section="This machine, checked" data-confirm="0" data-text="packages the github open-source catalogue: which free projects can do a job, which are installed on this pc, and the exact install command for the rest. nothing here costs money. action query role key search scan plan all detail">
+<h3>packages</h3>
+<p class="desc">The GitHub open-source catalogue: which free projects can do a job, which are installed on this PC, and the exact install command for the rest. Nothing here costs money.</p>
+<table>
+<tr><td>action</td><td class="ty">string</td><td class="rq"></td><td><span class="enum">search · scan · plan · all · detail</span></td></tr>
+<tr><td>query</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>role</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+<tr><td>key</td><td class="ty">string</td><td class="rq"></td><td></td></tr>
+</table>
+</div>
+</section>
+<p id="none" class="none" hidden>Nothing matches that. Try a shorter word — or ask Arc Desk itself: "list tools".</p>
+<footer>Generated by <code>tools/gen_tools_doc.py</code> from <code>arcdesk/ai/tools.py</code>. Counts are counted, not typed. To see what is actually working on this machine, run <code>python tools/capability.py --all</code>. ● = required argument. Works offline; no network, no fonts, no CDN.</footer>
+<script>
+
+const cards = [...document.querySelectorAll('.card')];
+const q = document.getElementById('q');
+const yes = document.getElementById('yes');
+const cat = document.getElementById('cat');
+const chips = [...document.querySelectorAll('.chip')];
+const count = document.getElementById('count');
+const none = document.getElementById('none');
+let asksOnly = false, section = '';
+
+function apply() {
+  const term = q.value.trim().toLowerCase();
+  let shown = 0;
+  for (const c of cards) {
+    const text = c.dataset.text;
+    let ok = !term || text.includes(term);
+    if (ok && asksOnly) ok = c.dataset.confirm === '1';
+    if (ok && section && c.dataset.section !== section) ok = false;
+    c.hidden = !ok;
+    if (ok) shown++;
+  }
+  for (const sec of document.querySelectorAll('section[data-section]')) {
+    const key = sec.dataset.section;
+    sec.hidden = !cards.some(c => c.dataset.section === key && !c.hidden);
+  }
+  count.textContent = shown + ' of ' + cards.length + ' tools';
+  none.hidden = shown !== 0;
+}
+q.addEventListener('input', apply);
+yes.addEventListener('change', () => { asksOnly = yes.checked; apply(); });
+cat.addEventListener('change', () => { section = cat.value; apply(); });
+for (const chip of chips) {
+  chip.addEventListener('click', () => {
+    section = chip.dataset.section;
+    cat.value = section;
+    chips.forEach(c => c.setAttribute('aria-pressed', String(c.dataset.section === section)));
+    apply();
+    chip.blur();
+  });
+}
+document.addEventListener('keydown', e => {
+  if (e.key === '/' && document.activeElement !== q) { e.preventDefault(); q.focus(); }
+  if (e.key === 'Escape') { q.value = ''; apply(); }
+});
+apply();
+
+</script></body></html>

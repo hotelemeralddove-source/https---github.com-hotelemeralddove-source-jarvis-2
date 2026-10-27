@@ -1,0 +1,14 @@
+# Voice backend engines only. No app, no UI, no model bundled.
+vosk>=0.3.45
+sounddevice>=0.4.6
+
+# The speaker-embedding engine behind "only my voice may command ARC".
+# It is not optional: without it Settings -> Voice -> "Teach ARC my voice" has nothing
+# to compare voices with. The 28 MB MODEL is downloaded later; this is the library.
+sherpa-onnx>=1.10
+
+# Optional extras — uncomment one at a time, each costs RAM in the daemon process.
+# openwakeword>=0.6.0          # pretrained wake words (needs onnxruntime)
+# onnxruntime>=1.16
+# pycaw>=20230407              # exact Windows volume levels instead of media keys
+# faster-whisper>=1.0.0        # much better dictation, ~80-300 MB model RAM

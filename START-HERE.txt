@@ -1,0 +1,120 @@
+JARVIS - START HERE
+===================
+
+ONE FOLDER. ONE FILE TO CLICK. NOTHING ELSE.
+
+  1. Unzip this whole "JARVIS" folder somewhere you will keep it, for example:
+         C:\Users\<you>\JARVIS
+     (not inside Downloads - Windows and cleaners empty that folder)
+
+  2. Double-click:            JARVIS.bat
+
+  3. First run only: it downloads Python if the laptop has none, builds its own .venv and
+     installs the libraries. 2-4 minutes, once. Nothing is installed globally, nothing is
+     added to PATH.
+
+  4. From then on:            JARVIS.bat
+
+     It also starts BY ITSELF from the next restart, hidden - no window, no console.
+     Ctrl+Alt+J opens it. To change that, double-click AUTO-START.bat.
+
+On a new laptop the same three steps work. Copy the folder, or copy this zip.
+
+WHAT IS IN HERE
+---------------
+  JARVIS.bat            the only thing you double-click (starts it, or brings it to front)
+  ONE-PLACE.bat         tidy up: keep this folder, park every other copy in JARVIS-OLD
+  AUTO-START.bat        start with Windows, hidden: shows the current state, turns it
+                        on, turns it off, or repairs the path after a move
+  CHECK-BEFORE-DELETE.bat  before you remove an old copy: shows what it really holds,
+                        then renames it to JARVIS-OLD. It never deletes anything
+  JARVIS-DIAGNOSE.bat   keeps its window open and prints what is wrong
+  one_place.py          the same tidy-up, for a terminal (--apply / --undo)
+  run.py                the app itself
+  requirements.txt      what it needs (the launcher installs these)
+  arcdesk\              the code
+  tools\                every helper tool, in one folder
+  packaging\            installer / build scripts
+  tests\                the checks that prove it works
+  docs\                 the long-form docs
+  *.md                  the handful worth opening first (listed below)
+
+THE DOCS THAT MATTER
+--------------------
+  ONE-FOLDER.md     what belongs at the top of this folder, and which copy is the real one
+  TROUBLESHOOT.md   every error that has ever been reported, and what it was
+  CAPABILITIES.md   what JARVIS can do
+  WHICH-ROUTE.md    which launcher/installer to use, and why
+  docs\             COMMANDS, VOICE, MCP, MAGIC, BUILD_REPORT and the rest
+
+FIRST THINGS TO DO IN THE APP
+-----------------------------
+  Settings -> Voice
+      Test wake (no mic)          check the speaker side works
+      Get the ears ready          microphone + wake word "JARVIS" (downloads ~70 MB)
+      Voices - who commands...    upload YOUR voice clip for replies
+  Then say "hey jarvis", or press Ctrl+Alt+J at any time.
+
+COMING FROM AN OLD COPY OF JARVIS
+--------------------------------
+  Nothing is done in the old folder first. Run THIS folder once, check it works, and only
+  then tidy up:
+      CHECK-BEFORE-DELETE.bat    drag the old folder onto it (or double-click and type the
+                                 path). It prints what is inside, lists the voice engines
+                                 hidden in the old .venv, and renames the folder to
+                                 JARVIS-OLD when you type R. Delete that yourself, later.
+  Your settings, voice clip and memory are NOT in the folder - they are in
+  %APPDATA%\ArcDesk, so they survive the switch.
+
+IF SOMETHING GOES WRONG
+-----------------------
+  %APPDATA%\ArcDesk\logs\arcdesk.log   what the app itself said
+  %APPDATA%\ArcDesk\logs\fault.log     a native crash, if one ever happened
+  JARVIS-DIAGNOSE.bat                  the readable version, in a window that stays open
+
+Nothing here deletes your files. ONE-PLACE.bat moves folders; --undo puts them back.
+
+THE CLONE VOICE (the "speak in my voice" part)
+----------------------------------------------
+  double-click install_clone.bat        Tamil  (IndicF5, ~1.5 GB, free token once)
+  install_clone.bat en                  English (XTTS-v2, ~1.9 GB, no account)
+  install_clone.bat hi                  Hindi
+It downloads by itself, with a moving progress line. Tamil and Hindi are gated models:
+Hugging Face needs a free licence click and a read token, and the prompt asks for it in the
+same window - paste it there and the download carries on without a second press.
+
+IF YOU ALREADY DOWNLOADED A MODEL IN A TERMINAL
+-----------------------------------------------
+JARVIS uses it. No second download, no second token:
+  * it reads the token from `huggingface-cli login` / HF_TOKEN automatically
+  * it finds the weights already in %USERPROFILE%\.cache\huggingface and uses them
+  * `python tools\engine_get.py status` says which of the two it found
+To fetch the weights yourself, directly, with resume:
+  python tools\engine_get.py fetch xtts        (2,087 MB, public, no account)
+  python tools\engine_get.py fetch indicf5     (1.5 GB, any logged-in token)
+
+START WITH THE COMPUTER
+-----------------------
+The first launch switches it on: JARVIS starts hidden when Windows starts, so after a
+reboot it is already running in the background. Ctrl+Alt+J opens it, Ctrl+Alt+Q quits.
+  AUTO-START.bat        on / off / repair, in one window, prints what Windows reports
+  Settings -> General   the same checkbox
+If you move or re-unzip the folder, the next launch repairs the entry by itself.
+
+IF YOU PREFER A CONDA ENVIRONMENT
+---------------------------------
+  conda create -n indicf5 python=3.10 -y
+  conda activate indicf5
+  pip install git+https://github.com/ai4bharat/IndicF5.git
+  huggingface-cli login            (the weights are gated: a read token, once)
+JARVIS finds that env by itself (Settings -> Voice -> "Find what I installed") and speaks
+through it. It never downloads the same 1.5 GB twice.
+  set ARCDESK_ENGINE_PYTHON=C:\...\envs\indicf5\python.exe    (if it lives elsewhere)
+
+THE ICON (so you never need this file again)
+--------------------------------------------
+The first time JARVIS opens, it puts its own icon on your Desktop and in the Start Menu.
+From then on: click the icon. No black window, no .bat to remember.
+  icon gone?          double-click CREATE-SHORTCUT.bat  (it prints where it put it)
+  do not want it?     Settings -> General -> "Keep a JARVIS icon on my Desktop"
+  moved the folder?   nothing to do - the next launch repairs the icon by itself

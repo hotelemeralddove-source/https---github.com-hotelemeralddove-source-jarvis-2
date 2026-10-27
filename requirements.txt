@@ -1,0 +1,33 @@
+# What Arc Desk actually imports. Nothing here is optional for the features the
+# app promises: "read any file", "edit an image", "speak", the HUD, the doctor.
+#
+# This list used to be PySide6 + psutil only. On the first real Windows CI run,
+# test_vision died with "No module named 'PIL'" and eight more tests fell over with
+# it — because the code imports Pillow and numpy everywhere and nobody had written
+# them down. An undeclared dependency is a promise the project cannot keep, so
+# tests/test_audit.py now FAILS if an import is not declared here.
+# Pinned, not ranged: the QThreadStorage global-static bug in Qt (6.8.2, and again
+# 6.10.0-6.10.2) destroys per-thread storage while a thread is still alive; the heap
+# is then quietly corrupted and the app dies later in a random hot spot with an access
+# violation — for the user, "jarvis just closes" with no traceback. Qt fixed it in
+# 6.10.3 / 6.11.1 / 6.12.0, and 6.12.0 is the version the test farm runs on.
+PySide6-Essentials==6.12.0
+psutil>=5.9,<8
+
+# images: the art view, photo search, screenshots, the icon, editing
+Pillow>=10,<12
+# numbers: the clone reference, vision, pc_health, the studio
+numpy>=1.26
+
+# reading and editing the documents people actually have
+pypdf>=4.0              # PDF
+python-docx>=1.1        # Word
+openpyxl>=3.1           # Excel
+python-pptx>=0.6.23     # PowerPoint
+mutagen>=1.47           # real music tags, when a file has them
+
+# audio, WITHOUT ffmpeg: libsndfile is inside this wheel, so voice uploads
+# (mp3, ogg/opus from WhatsApp, flac, wav) can be read on a laptop that has
+# never had ffmpeg installed. arcdesk/audio.py falls back to PyAV only for
+# m4a/mp4/webm, and installs that itself when it meets one.
+soundfile>=0.12

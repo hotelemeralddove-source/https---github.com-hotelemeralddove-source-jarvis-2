@@ -1,0 +1,13 @@
+# Build-only. Never imported by the app at runtime — a frozen exe cannot pip install,
+# so nothing here is needed to *use* Arc Desk, only to *produce* the installer.
+
+PyInstaller>=6.6,<7
+
+# Why this file exists: tools/preflight_win.py imports PyInstaller to check that it is
+# there before the build starts, and tests/test_audit.py (rightly) refuses an undeclared
+# third-party import. Declaring it here says what it is: a tool for the person building,
+# not a dependency of the person using.
+
+# Inno Setup 6 is not a pip package. It is what turns dist\ArcDesk into
+# dist\ArcDeskSetup.exe:
+#     winget install JRSoftware.InnoSetup

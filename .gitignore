@@ -1,0 +1,30 @@
+# ---- virtualenvs and caches
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+
+# ---- build output
+# packaging/arcdesk.spec, packaging/build.bat, packaging/arcdesk.iss and
+# packaging/make_installer.bat are SOURCE and must be committed. Everything below is
+# produced by PyInstaller and is deliberately not in the repo: a committed exe is how a
+# project ends up shipping a binary nobody can rebuild.
+#
+# Note the folder is `packaging/`, not `build/`: anything named `build`, `dist` or `out`
+# is treated as disposable by most tooling (and by this project's own workspace
+# snapshots), which is exactly how the spec file went missing once already.
+dist/
+packaging/work/
+packaging/build_info.txt
+
+# ---- scratch
+*.spec.bak
+shots/_scratch/
+
+# ---- downloaded portable runtimes (fetched by packaging/fetch_runtime.py at BUILD time)
+# Roughly 200 MB of ffmpeg + 80 MB of node. They are never committed: the build machine
+# downloads them once, the installer carries them, and the user never sees a download.
+runtime/
+packaging/runtimes/
+.failures/

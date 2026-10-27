@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ARC DESK · the library</title>
+<style>
+  :root {
+    --void:#01050a; --ink:#d8f6ff; --dim:#6f97a6; --cy:#48f2ff; --cy2:#1b8fa3;
+    --gold:#f4d06f; --red:#ff6b6b; --line:rgba(72,242,255,.28);
+  }
+  * { box-sizing:border-box; }
+  body {
+    margin:0; padding:34px 22px 70px; background:
+      radial-gradient(1200px 700px at 50% -10%, #06222b 0%, transparent 60%),
+      radial-gradient(900px 500px at 85% 100%, #0a1e26 0%, transparent 55%), var(--void);
+    color:var(--ink); font:15px/1.62 "Segoe UI",system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap { max-width:1100px; margin:0 auto; }
+  .frame { position:relative; padding:26px 24px 30px; border:1px solid var(--line);
+    background:linear-gradient(180deg, rgba(9,32,40,.72), rgba(2,9,14,.86)); }
+  .frame::before, .frame::after { content:""; position:absolute; width:22px; height:22px;
+    border:2px solid var(--cy); }
+  .frame::before { top:-1px; left:-1px; border-right:0; border-bottom:0; }
+  .frame::after { bottom:-1px; right:-1px; border-left:0; border-top:0; }
+  h1 { font:600 26px/1.2 "Segoe UI",sans-serif; letter-spacing:.34em; margin:0 0 6px;
+    color:var(--cy); text-transform:uppercase; }
+  h1 span { color:var(--ink); letter-spacing:.06em; font-weight:300; }
+  .sub { color:var(--dim); font-size:13px; letter-spacing:.06em; margin-bottom:22px; }
+  .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(132px,1fr));
+    gap:10px; margin:0 0 26px; }
+  .stat { border:1px solid var(--line); padding:11px 13px; background:rgba(6,26,33,.6); }
+  .stat b { display:block; font:600 24px/1.1 "Consolas",monospace; color:var(--cy); }
+  .stat i { font-style:normal; font-size:11px; letter-spacing:.16em; color:var(--dim);
+    text-transform:uppercase; }
+  h2 { font:500 13px/1 "Segoe UI"; letter-spacing:.28em; text-transform:uppercase;
+    color:var(--cy); margin:34px 0 14px; padding-bottom:8px;
+    border-bottom:1px solid var(--line); }
+  .sources { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:12px; }
+  .src-card { border:1px solid var(--line); background:rgba(6,26,33,.5); padding:14px 15px; }
+  .src-card h3 { margin:0 0 6px; font-size:13px; letter-spacing:.14em; color:var(--gold);
+    text-transform:uppercase; }
+  .src-card p { margin:0; font-size:13px; color:#a9c9d4; }
+  .qa { border:1px solid var(--line); border-left:3px solid var(--cy);
+    background:rgba(4,17,23,.72); margin:0 0 12px; }
+  .qa.refused { border-left-color:var(--red); }
+  .ask { display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+    padding:9px 13px; border-bottom:1px solid rgba(72,242,255,.14); }
+  .q { font:500 14px/1.4 "Consolas",monospace; color:var(--ink); }
+  .tag { font-size:10px; letter-spacing:.14em; text-transform:uppercase; padding:2px 7px;
+    border:1px solid currentColor; }
+  .tag.yes { color:var(--cy); } .tag.no { color:var(--red); }
+  pre { margin:0; padding:12px 14px; white-space:pre-wrap; font:13px/1.6 "Consolas",
+    monospace; color:#bfe7f2; }
+  .cite { color:var(--gold); }
+  .shelf { display:grid; grid-template-columns:repeat(auto-fit,minmax(266px,1fr)); gap:12px; }
+  .shelf-card { border:1px solid var(--line); background:rgba(6,26,33,.45); padding:12px 14px; }
+  .shelf-card h4 { margin:0 0 8px; font-size:12px; letter-spacing:.2em; color:var(--cy); }
+  .count { float:right; font:600 12px/1 "Consolas"; color:var(--gold); }
+  .shelf-card ul { margin:0; padding-left:16px; }
+  .shelf-card li { font-size:12.5px; color:#a9c9d4; margin-bottom:7px; }
+  .shelf-card .src { color:var(--dim); }
+  .shelf-card .more { color:var(--dim); font-style:italic; }
+  .note { border:1px solid rgba(244,208,111,.35); background:rgba(40,32,10,.28);
+    padding:13px 15px; font-size:13px; color:#e8dcb4; }
+  footer { margin-top:34px; color:var(--dim); font-size:12px; letter-spacing:.04em; }
+  code { font-family:"Consolas",monospace; color:var(--gold); }
+</style></head>
+<body><div class="wrap"><div class="frame">
+
+  <h1>ARC DESK <span>· the library</span></h1>
+  <div class="sub">"jarvis knows everything" — the honest build · every line below is a real
+    output, generated at page build time</div>
+
+  <div class="stats">
+    <div class="stat"><b>75</b><i>sourced facts</i></div>
+    <div class="stat"><b>8</b><i>domains</i></div>
+    <div class="stat"><b>65</b><i>named sources</i></div>
+    <div class="stat"><b>5</b><i>always dated</i></div>
+    <div class="stat"><b>74</b><i>tools</i></div>
+    <div class="stat"><b>41</b><i>test files</i></div>
+  </div>
+
+  <h2>Four sources. That is the whole claim.</h2>
+  <div class="sources">
+    <div class="src-card"><h3>Shelf</h3><p>75 entries, each with a source and a
+      year, on this disk. No network needed.</p></div>
+    <div class="src-card"><h3>Your files</h3><p>Point it at a folder — txt, md, csv, json, pdf,
+      docx, xlsx, pptx — and it quotes the sentence with the filename.</p></div>
+    <div class="src-card"><h3>Live lookup</h3><p>Wikipedia, with the URL and the date it was
+      read. Cached a week. Says so when the network is down.</p></div>
+    <div class="src-card"><h3>The machine</h3><p>Clock, CPU, RAM, disk, reminders, calendar —
+      measured, never remembered.</p></div>
+  </div>
+
+  <h2>Asked and answered — 9 from the shelf, 2 honest no</h2>
+  
+        <article class="qa">
+          <div class="ask"><span class="tag yes">from the shelf</span><span class="q">“how many states in india”</span></div>
+          <pre>India has 28 states and 8 union territories. Jammu and Kashmir was reorganised into two union territories in October 2019.<br><br><span class="cite">source:</span> Government of India reorganisation acts (2024)<br><br>(That is one of 75 sourced entries on this disk — ask &#x27;what do you know&#x27; for the shelf.)</pre>
+        </article>
+        <article class="qa">
+          <div class="ask"><span class="tag yes">from the shelf</span><span class="q">“how tall is everest”</span></div>
+          <pre>8,848.86 m above sea level, agreed jointly by Nepal and China in 2020. It grows a few millimetres a year from tectonic uplift.<br><br><span class="cite">source:</span> Nepal–China joint survey, 2020 (2020)<br><br>Also in the library:<br>  · The Challenger Deep in the Mariana Trench, about 10,935 m down — deeper than Everest is tall..  (NOAA, 2024)<br><br>(That is one of 75 sourced entries on this disk — ask &#x27;what do you know&#x27; for the shelf.)</pre>
+        </article>
+        <article class="qa">
+          <div class="ask"><span class="tag yes">from the shelf</span><span class="q">“what is the gst rate structure”</span></div>
+          <pre>The Goods and Services Tax started on 1 July 2017 and replaced a pile of central and state taxes. The common slabs are 0%, 5%, 12%, 18% and 28%, plus cess on some goods. Rates are decided by the GST Council and do change.<br><br><span class="cite">source:</span> GST Council — as of 2024, and this number changes<br><br>(That is one of 75 sourced entries on this disk — ask &#x27;what do you know&#x27; for the shelf.)</pre>
+        </article>
+        <article class="qa">
+          <div class="ask"><span class="tag yes">from the shelf</span><span class="q">“what is cpr”</span></div>
+          <pre>Adult CPR: 30 chest compressions then 2 rescue breaths, about 100-120 compressions a minute, hard and deep, on a hard surface. Call emergency services first and follow their instructions.<br><br><span class="cite">source:</span> AHA / Red Cross public guidance (2024)<br><br>(That is one of 75 sourced entries on this disk — ask &#x27;what do you know&#x27; for the shelf.)</pre>
+        </article>
+        <article class="qa">
+          <div class="ask"><span class="tag yes">from the shelf</span><span class="q">“how many bits in a byte”</span></div>
+          <pre>8 bits. A nibble is 4 bits. Throughput in bits per second and storage in bytes is why a &#x27;100 Mbps&#x27; line downloads at about 12 MB/s.<br><br><span class="cite">source:</span> IEC 80000 (2024)<br><br>(That is one of 75 sourced entries on this disk — ask &#x27;what do you know&#x27; for the shelf.)</pre>
+        </article>
+        <article class="qa">
+          <div class="ask"><span class="tag yes">from the shelf</span><span class="q">“who started python”</span></div>
+          <pre>Guido van Rossum started Python in 1989 and released 1.0 in 1991; it is named after Monty Python, not the snake.<br><br><span class="cite">source:</span> python.org (2024)<br><br>(That is one of 75 sourced entries on this disk — ask &#x27;what do you know&#x27; for the shelf.)</pre>
+        </article>
+        <article class="qa">
+          <div class="ask"><span class="tag yes">from the shelf</span><span class="q">“what is india&#x27;s population”</span></div>
+          <pre>About 1.43 billion people — India passed China as the most populous country in 2023.<br><br><span class="cite">source:</span> UN World Population Prospects — as of 2024, and this number changes<br><br>(That is one of 75 sourced entries on this disk — ask &#x27;what do you know&#x27; for the shelf.)</pre>
+        </article>
+        <article class="qa">
+          <div class="ask"><span class="tag yes">from the shelf</span><span class="q">“what is the repo rate”</span></div>
+          <pre>The rate at which the RBI lends short-term to banks; the Monetary Policy Committee sets it. It moves — quote the date whenever you quote the number.<br><br><span class="cite">source:</span> Reserve Bank of India — as of 2024, and this number changes<br><br>(That is one of 75 sourced entries on this disk — ask &#x27;what do you know&#x27; for the shelf.)</pre>
+        </article>
+        <article class="qa">
+          <div class="ask"><span class="tag yes">from the shelf</span><span class="q">“is lightning never striking twice true”</span></div>
+          <pre>It strikes tall structures repeatedly — the Empire State Building is hit roughly 20-25 times a year. &#x27;Never twice&#x27; is a comfort, not a fact.<br><br><span class="cite">source:</span> NOAA (2024)<br><br>(That is one of 75 sourced entries on this disk — ask &#x27;what do you know&#x27; for the shelf.)</pre>
+        </article>
+        <article class="qa refused">
+          <div class="ask"><span class="tag no">honest no</span><span class="q">“who won the 2024 election”</span></div>
+          <pre>I do not know that one, and I will not improvise it.<br><br>My offline library covers 75 dated facts across 8 domains (India, world, science, tech, money, health, food, myths) plus your own files and live machine readings. Anything outside that — today&#x27;s news, a person&#x27;s current role, a price — needs a source.<br><br>Three honest moves:<br>  1. Open the source and read it yourself:<br>     https://en.wikipedia.org/wiki/Special:Search?search=who+won+the+2024+election<br>     https://duckduckgo.com/?q=who+won+the+2024+election<br>  2. Paste the text here and ask me to analyse it — I am good at that.<br>  3. Ask &#x27;what do you know about &lt;topic&gt;&#x27; to see what is already on disk.</pre>
+        </article>
+        <article class="qa refused">
+          <div class="ask"><span class="tag no">honest no</span><span class="q">“gold price today”</span></div>
+          <pre>I do not know that one, and I will not improvise it.<br><br>My offline library covers 75 dated facts across 8 domains (India, world, science, tech, money, health, food, myths) plus your own files and live machine readings. Anything outside that — today&#x27;s news, a person&#x27;s current role, a price — needs a source.<br><br>Three honest moves:<br>  1. Open the source and read it yourself:<br>     https://en.wikipedia.org/wiki/Special:Search?search=gold+price+today<br>     https://duckduckgo.com/?q=gold+price+today<br>  2. Paste the text here and ask me to analyse it — I am good at that.<br>  3. Ask &#x27;what do you know about &lt;topic&gt;&#x27; to see what is already on disk.</pre>
+        </article>
+
+  <h2>Your own file, quoted</h2>
+  <article class="qa">
+    <div class="ask"><span class="tag yes">your library</span>
+      <span class="q">“index my notes folder”</span></div>
+    <pre>Indexed 1 file(s) into 1 searchable chunks from /tmp/arcdesk-neeli-dobwvjhg.
+Ask me anything that is inside them — the answer quotes the file name.</pre>
+  </article>
+  <article class="qa">
+    <div class="ask"><span class="tag yes">your library</span>
+      <span class="q">“when are the housekeeping rounds”</span></div>
+    <pre>From your own library:<br>  · neeli_handover.md: …Neeli rooftop cafe. Breakfast is included for direct bookings only. Housekeeping rounds are at 11:00 and 16:00. Generator switch is behind the staircase, second panel. Season tariff for room 12 is 4200 rupees including tax.…<br>Quoted, not paraphrased — open the file to read the rest.</pre>
+  </article>
+
+  <h2>The shelf itself</h2>
+  <div class="shelf">
+        <div class="shelf-card">
+          <h4>INDIA <span class="count">20</span></h4>
+          <ul><li>India has 28 states and 8 union territories<span class="src"> — Government of India reorganisation acts, 2024</span></li><li>New Delhi is the capital of India; Delhi is the National Capital Territory that contains it.<span class="src"> — Constitution / NCT of Delhi Act, 2024</span></li><li>India Standard Time is UTC+05:30, one zone for the whole country, with no daylight saving.<span class="src"> — Indian Standard Time Act, 1947, 2024</span></li><li>About 1.43 billion people — India passed China as the most populous country in 2023. <b style="color:#f4d06f">*</b><span class="src"> — UN World Population Prospects, 2024</span></li><li class="more">+ 16 more in this domain</li></ul>
+        </div>
+        <div class="shelf-card">
+          <h4>WORLD <span class="count">11</span></h4>
+          <ul><li>8,848.86 m above sea level, agreed jointly by Nepal and China in 2020<span class="src"> — Nepal–China joint survey, 2020, 2020</span></li><li>The Challenger Deep in the Mariana Trench, about 10,935 m down — deeper than Everest is tall.<span class="src"> — NOAA, 2024</span></li><li>Russia, about 17.1 million km² — roughly twice Canada, the second largest.<span class="src"> — UN Statistics Division, 2024</span></li><li>Vatican City, about 0.49 km² and under a thousand residents.<span class="src"> — Vatican City State, 2024</span></li><li class="more">+ 7 more in this domain</li></ul>
+        </div>
+        <div class="shelf-card">
+          <h4>SCIENCE <span class="count">10</span></h4>
+          <ul><li>299,792,458 metres per second in a vacuum — an exact number since 1983, because the metre is now<span class="src"> — BIPM / SI, 2019</span></li><li>The distance light travels in a Julian year: about 9.46 trillion km<span class="src"> — IAU, 2024</span></li><li>9.80665 m/s² is the standard gravity used for definitions<span class="src"> — BIPM, 2019</span></li><li>6.02214076 × 10²³ particles per mole, fixed exactly by the 2019 SI redefinition.<span class="src"> — BIPM / SI, 2019</span></li><li class="more">+ 6 more in this domain</li></ul>
+        </div>
+        <div class="shelf-card">
+          <h4>TECH <span class="count">13</span></h4>
+          <ul><li>8 bits<span class="src"> — IEC 80000, 2024</span></li><li>IPv4 addresses are 32-bit (about 4.3 billion, exhausted); IPv6 is 128-bit (3.4 × 10³⁸) which is <span class="src"> — IETF RFC 8200, 2024</span></li><li>HTTP over TLS: the traffic is encrypted and the server proves its identity with a certificate<span class="src"> — IETF RFC 8446, 2024</span></li><li>RAM is fast, volatile working space the CPU reads constantly; storage (SSD/HDD) is slow, persist<span class="src"> — JEDEC DDR5 / NVM Express specifications, 2024</span></li><li class="more">+ 9 more in this domain</li></ul>
+        </div>
+        <div class="shelf-card">
+          <h4>MONEY <span class="count">7</span></h4>
+          <ul><li>Gross margin = (revenue − cost of goods) ÷ revenue<span class="src"> — IFRS Foundation / ICAI accounting standards, 2024</span></li><li>Earnings before interest, tax, depreciation and amortisation — a rough measure of operating cash<span class="src"> — IFRS Foundation / ICAI accounting standards, 2024</span></li><li>A = P(1 + r/n)^(nt)<span class="src"> — compound-interest identity: A = P(1+r/n)^(nt), 2024</span></li><li>A sustained rise in the general price level, usually measured by a CPI basket<span class="src"> — RBI / statistics ministries, 2024</span></li><li class="more">+ 3 more in this domain</li></ul>
+        </div>
+        <div class="shelf-card">
+          <h4>HEALTH <span class="count">7</span></h4>
+          <ul><li>Oral rehydration salts in clean water replace water and electrolytes lost to diarrhoea; low-osmo<span class="src"> — WHO, 2024</span></li><li>Adult CPR: 30 chest compressions then 2 rescue breaths, about 100-120 compressions a minute, har<span class="src"> — AHA / Red Cross public guidance, 2024</span></li><li>Fever is a regulated rise in body temperature — a response, not a disease<span class="src"> — WHO, 2024</span></li><li>No<span class="src"> — WHO, 2024</span></li><li class="more">+ 3 more in this domain</li></ul>
+        </div>
+        <div class="shelf-card">
+          <h4>FOOD <span class="count">4</span></h4>
+          <ul><li>240 ml in a US cup, 250 ml in a metric cup — the 4% difference ruins baking if you assume the wr<span class="src"> — US NIST / metric practice, 2024</span></li><li>1 kg = 2.20462 lb<span class="src"> — NIST, 2024</span></li><li>The Maillard reaction: amino acids and sugars react above roughly 140 °C, creating hundreds of f<span class="src"> — Fennema&#x27;s Food Chemistry, 2024</span></li><li>It does not — dissolved salt raises the boiling point and slows heating<span class="src"> — IUPAC Gold Book (colligative properties), 2024</span></li></ul>
+        </div>
+        <div class="shelf-card">
+          <h4>MYTHS <span class="count">3</span></h4>
+          <ul><li>Goldfish remember far longer than three seconds — studies show learned responses retained for mo<span class="src"> — fish-cognition reviews, Animal Cognition journal, 2024</span></li><li>Not with the naked eye — it is long but far too narrow<span class="src"> — NASA, 2024</span></li><li>It strikes tall structures repeatedly — the Empire State Building is hit roughly 20-25 times a y<span class="src"> — NOAA, 2024</span></li></ul>
+        </div></div>
+  <p class="note"><b>*</b> = a number that moves. It is never printed without its year, and
+    <code>tests/test_world.py</code> fails the build if that ever slips.</p>
+
+  <footer>
+    75 entries · 8 domains · built from
+    <code>arcdesk/world.py</code> · questions run through <code>arcdesk/ai/tools.py</code>
+    tool 74 (<code>facts</code>) · page generated by <code>tools/make_knows_page.py</code>.
+  </footer>
+</div></div></body></html>
